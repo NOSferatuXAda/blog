@@ -482,35 +482,6 @@ code.hljs {
   /* purposely ignored */
   
 }
-.highlight:hover .copy-btn,
-.code-container:hover .copy-btn {
-  opacity: 1;
-}
-.code-container {
-  position: relative;
-}
-.code-lang {
-  font-size: 40px;
-  line-height: 1;
-  opacity: 0.1;
-  pointer-events: none;
-  position: absolute;
-  right: 5px;
-}
-.copy-btn {
-  color: #333;
-  cursor: pointer;
-  line-height: 1.6;
-  opacity: 0;
-  padding: 2px 6px;
-  position: absolute;
-  transition: opacity 0.2s ease-in-out;
-  background: #fff;
-  border: 0;
-  font-size: 0.8125em;
-  right: 0;
-  top: 0;
-}
 code,
 kbd,
 figure.highlight,
@@ -1247,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffc2df;
+    background: #8a1c46;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3322,4 +3293,93 @@ figure.highlight .copy-btn:hover {
   .post-body {
     font-size: 0.96em;
   }
+}
+/* ---------- 首页第一栏：整卡可点击（跳转文章归档） ---------- */
+.surreal-panel-link {
+  cursor: pointer;
+}
+.surreal-panel-anchor {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 0;
+}
+/* 拉伸点击热区，让整张卡片都能点击 */
+.surreal-panel-anchor::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+.surreal-panel-link:hover .surreal-panel-title {
+  color: var(--surreal-red);
+}
+/* ---------- 文章仓库（/archives）空状态 ---------- */
+.surreal-archive-empty {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  border: 1px dashed var(--surreal-line-light);
+  background: linear-gradient(135deg, rgba(255,29,29,0.05), transparent 62%);
+}
+.surreal-archive-empty::before,
+.surreal-archive-empty::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--surreal-red);
+}
+.surreal-archive-empty::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.surreal-archive-empty::after {
+  right: -1px;
+  bottom: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+.surreal-archive-empty-mark {
+  color: var(--surreal-grey-dark);
+  font-size: 0.78em;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+}
+/* ---------- 致谢页：只保留内容 ---------- */
+/* 隐藏页面正文前的定位标记 */
+.thanks-marker {
+  display: none;
+}
+/* 双保险：即使主题重新开启，也不显示语言水印与复制按钮 */
+figure.highlight .code-lang,
+figure.highlight .copy-btn {
+  display: none !important;
+}
+/* 去掉前三段纯文本代码块的滚动条，并允许直接换行 */
+figure.highlight.text {
+  overflow: visible;
+}
+figure.highlight.text .code pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+/* 致谢页代码块：去掉行号、收紧内边距，只保留语句本身 */
+.post-block:has(.thanks-marker) figure.highlight {
+  margin: 14px 0;
+  box-shadow: none;
+  overflow: visible;
+}
+.post-block:has(.thanks-marker) figure.highlight .gutter {
+  display: none;
+}
+.post-block:has(.thanks-marker) figure.highlight .code pre {
+  padding: 16px 22px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
