@@ -124,12 +124,13 @@ theme_color:
   light: "#ff1d1d"
   dark: "#ff1d1d"
 
-# 自定义变量 / 自定义样式 / 自定义侧边栏作者卡片 / 自定义 head
+# 自定义变量 / 自定义样式 / 自定义侧边栏作者卡片 / 自定义 head / body-end 脚本
 custom_file_path:
   head: source/_data/head.njk
   variable: source/_data/variables.styl
   style: source/_data/styles.styl
   sidebar: source/_data/sidebar.njk
+  bodyEnd: source/_data/body-end.njk
 
 # 资源本地化，不依赖境外 CDN
 vendors:
