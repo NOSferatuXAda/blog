@@ -1,0 +1,115 @@
+# NexT 主题自定义配置（覆盖主题默认值）
+# 主题文档: https://theme-next.js.org/docs/theme-settings/
+# 本文件只写需要覆盖的配置项，其余保持主题默认值。
+
+# 主题风格：Muse | Mist | Pisces | Gemini
+scheme: Gemini
+
+# 深色模式开关（右上角可切换）
+darkmode: true
+
+# 顶部导航菜单
+menu:
+  home: / || fa fa-home
+  archives: /archives/ || fa fa-archive
+  tags: /tags/ || fa fa-tags
+  categories: /categories/ || fa fa-layer-group
+  about: /about/ || fa fa-user
+
+menu_settings:
+  badges: true
+  icons: true
+
+# 社交链接（显示在侧边栏）
+social:
+  GitHub: https://github.com/NOSferatuXAda || fab fa-github
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: true
+
+avatar:
+  url: # /images/avatar.gif
+  rounded: true
+  rotated: false
+
+sidebar:
+  position: left
+  display: post
+  padding: 18
+  offset: 12
+
+# 文章目录
+toc:
+  enable: true
+  number: true
+  wrap: true
+  expand_all: false
+  max_depth: 4
+
+# 阅读进度条
+reading_progress:
+  enable: true
+  start_at: left
+  position: top
+  color: "#37c6c0"
+  height: 3px
+
+# 阅读进度自动书签
+bookmark:
+  enable: true
+  save: auto
+
+# 返回顶部
+back2top:
+  enable: true
+  sidebar: false
+  scrollpercent: true
+
+# 页面切换动画
+motion:
+  enable: true
+  async: true
+  transition:
+    post_block: fadeIn
+    post_header: fadeInDown
+    post_body: fadeInDown
+    coll_header: fadeInLeft
+    sidebar: fadeInUp
+
+# 代码块
+codeblock:
+  theme:
+    light: default
+    dark: stackoverflow-dark
+  copy_button:
+    enable: true
+    style: mac
+  language: true
+
+# 图片灯箱
+fancybox: true
+
+# 站内搜索（hexo-generator-searchdb）
+local_search:
+  enable: true
+  trigger: auto
+  top_n_per_article: 1
+  unescape: false
+  preload: true
+
+# 页脚
+footer:
+  since: 2026
+  icon:
+    name: fa fa-heart
+    animated: true
+    color: "#ff0000"
+  copyright:
+  powered: true
+
+# 资源本地化，不依赖境外 CDN
+vendors:
+  internal: local
+  plugins: local
