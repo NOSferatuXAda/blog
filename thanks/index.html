@@ -15,9 +15,10 @@
 
 
 <link rel="stylesheet" href="/blog/lib/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/blog/lib/animate.css/animate.min.css">
   <link rel="stylesheet" href="/blog/lib/@fancyapps/ui/dist/fancybox/fancybox.css">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":true,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
 
     <meta name="description" content="Thank you  感谢  Danke  print(&quot;thanks&quot;)  System.out.println(&quot;thanks&quot;);  cout &lt;&lt; &quot;thanks&quot;;">
 <meta property="og:type" content="website">
@@ -52,7 +53,7 @@
 
   
   <script src="/blog/lib/@fancyapps/ui/dist/fancybox/fancybox.umd.js" defer></script>
-<script src="/blog/js/utils.js" defer></script><script src="/blog/js/sidebar.js" defer></script><script src="/blog/js/next-boot.js" defer></script>
+<script src="/blog/js/utils.js" defer></script><script src="/blog/js/motion.js" defer></script><script src="/blog/js/sidebar.js" defer></script><script src="/blog/js/next-boot.js" defer></script>
 
   
 
@@ -67,13 +68,33 @@
 
 
 
+<link rel="preload" href="/blog/fonts/syne-latin-700.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/blog/fonts/syne-latin-800.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/blog/fonts/jetbrains-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/blog/fonts/jetbrains-mono-latin-600.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<meta name="color-scheme" content="dark">
+<noscript>
+  <style>
+    .use-motion .column,
+    .use-motion .site-title,
+    .use-motion .site-subtitle,
+    .use-motion .menu-item,
+    .use-motion .post-block,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .footer {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  </style>
+</noscript>
 
   <noscript>
     <link rel="stylesheet" href="/blog/css/noscript.css">
   </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
 
   <main class="main">
