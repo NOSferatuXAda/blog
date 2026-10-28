@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #d1ffcc;
+    background: #bb49eb;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3757,6 +3757,35 @@ html {
   white-space: nowrap;
   font-size: 0.94em;
   letter-spacing: 0.1em;
+}
+/* ============================================================
+   Surreal 液态流体背景（WebGL）
+   ============================================================ */
+.fluid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.85;
+  filter: saturate(1.08);
+}
+@media print {
+  .fluid-bg {
+    display: none;
+  }
+}
+/* 背景分层：body 背景会覆盖 z-index 为负的 fixed 元素，
+   把渐变/底色移到 <html>、body 透明，流体背景才能显示在内容之下。 */
+html {
+  background-color: var(--surreal-black);
+  background-image: radial-gradient(ellipse at 72% 18%, rgba(255,29,29,0.05), transparent 52%), repeating-linear-gradient(135deg, rgba(255,29,29,0.04) 0, rgba(255,29,29,0.04) 1px, transparent 1px, transparent 110px);
+  background-attachment: fixed;
+}
+body {
+  background-color: transparent !important;
+  background-image: none !important;
 }
 @keyframes grainShift {
   0% {
