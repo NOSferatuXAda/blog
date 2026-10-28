@@ -66,14 +66,15 @@ back2top:
   sidebar: false
   scrollpercent: true
 
-# 页面切换动画
+# 页面切换动画（启用 NexT 原生 motion 过渡）
 motion:
-  enable: false
+  enable: true
   async: true
+  duration: 260
   transition:
     post_block: fadeIn
     post_header: fadeInDown
-    post_body: fadeInDown
+    post_body: fadeInUp
     coll_header: fadeInLeft
     sidebar: fadeInUp
 
@@ -123,8 +124,9 @@ theme_color:
   light: "#ff1d1d"
   dark: "#ff1d1d"
 
-# 自定义变量 / 自定义样式 / 自定义侧边栏作者卡片
+# 自定义变量 / 自定义样式 / 自定义侧边栏作者卡片 / 自定义 head
 custom_file_path:
+  head: source/_data/head.njk
   variable: source/_data/variables.styl
   style: source/_data/styles.styl
   sidebar: source/_data/sidebar.njk

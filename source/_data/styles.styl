@@ -891,3 +891,500 @@ figure.highlight.text .code pre {
   overflow-wrap: anywhere;
 }
 
+/* ============================================================
+   精装修层：字体 / 噪点 / 霓虹 / 占位符动效 / 终端阵列
+   ============================================================ */
+
+/* ---------- 自托管字体（Syne + JetBrains Mono，中文回退系统黑体） ---------- */
+
+@font-face {
+  font-family: "Syne";
+  src: url("../fonts/syne-latin-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Syne";
+  src: url("../fonts/syne-latin-800.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/jetbrains-mono-latin-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/jetbrains-mono-latin-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-display: "Syne", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, Menlo, monospace;
+  --neon-red: 0 0 22px rgba(255, 29, 29, 0.35);
+  --neon-red-strong: 0 0 30px rgba(255, 29, 29, 0.6);
+}
+
+/* ---------- 全局字体与排版节奏 ---------- */
+
+body {
+  font-family: var(--font-body);
+  letter-spacing: 0.015em;
+}
+
+.site-title,
+.site-title a,
+.site-subtitle,
+.post-title,
+.surreal-panel-title,
+.surreal-cats-name,
+.surreal-author-name,
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  font-family: var(--font-display);
+}
+
+code,
+pre,
+figure.highlight,
+kbd,
+.menu-item a,
+.surreal-panel-mark,
+.surreal-cats-index,
+.surreal-archive-empty-mark,
+.surreal-author-kicker,
+.surreal-author-bio,
+.surreal-author-social a,
+.surreal-about p,
+.unknown-token {
+  font-family: var(--font-mono);
+}
+
+.post-body {
+  line-height: 2.05;
+  letter-spacing: 0.035em;
+}
+
+.post-body p {
+  letter-spacing: 0.035em;
+}
+
+.site-title,
+.site-title a {
+  letter-spacing: 0.26em;
+}
+
+.site-subtitle {
+  letter-spacing: 0.42em;
+}
+
+/* ---------- 背景：暗黑磨砂 + 噪点 + 暗角 ---------- */
+
+body {
+  background-color: var(--surreal-black);
+  background-image:
+    radial-gradient(ellipse at 72% 18%, rgba(255, 29, 29, 0.07), transparent 52%),
+    radial-gradient(ellipse at 20% 85%, rgba(255, 255, 255, 0.025), transparent 55%),
+    repeating-linear-gradient(135deg, rgba(255, 29, 29, 0.05) 0, rgba(255, 29, 29, 0.05) 1px, transparent 1px, transparent 110px),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.022) 0, rgba(255, 255, 255, 0.022) 1px, transparent 1px, transparent 160px);
+  background-attachment: fixed;
+}
+
+/* 噪点：内联 SVG fractalNoise，零外部依赖 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: grainShift 9s steps(8) infinite;
+}
+
+@keyframes grainShift {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-1.5%, 1%); }
+  40% { transform: translate(1%, -1.5%); }
+  60% { transform: translate(-1%, -1%); }
+  80% { transform: translate(1.5%, 1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ---------- 鼠标悬停：红色霓虹与锐利几何反馈 ---------- */
+
+.post-body a:hover,
+.footer a:hover,
+.surreal-author-social a:hover,
+.surreal-panel-link:hover .surreal-panel-anchor {
+  text-shadow: var(--neon-red);
+}
+
+.site-title a {
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.site-title a:hover {
+  color: var(--surreal-red) !important;
+  text-shadow: 2px 0 rgba(255, 29, 29, 0.7), -2px 0 rgba(255, 255, 255, 0.2);
+  animation: titleGlitch 0.32s steps(2) 1;
+}
+
+@keyframes titleGlitch {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(2px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+}
+
+.surreal-panel {
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.34s ease, border-color 0.34s ease;
+}
+
+.surreal-panel:hover {
+  border-color: var(--surreal-red);
+  box-shadow: 0 0 0 1px var(--surreal-red), 0 0 32px rgba(255, 29, 29, 0.22), 16px 16px 0 1px rgba(255, 29, 29, 0.6);
+}
+
+.surreal-panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--surreal-red), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.surreal-panel:hover::before {
+  transform: scaleX(1);
+}
+
+.surreal-author-card,
+.surreal-cats-children a,
+figure.highlight {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.surreal-author-card:hover {
+  border-color: var(--surreal-red);
+  box-shadow: 0 0 0 1px var(--surreal-red), var(--neon-red), 6px 6px 0 0 rgba(255, 29, 29, 0.35);
+}
+
+/* ---------- 占位符（unknown）：红色描边 + 呼吸 + 打字机光标 ---------- */
+
+@keyframes unknownBreathe {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes cursorBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.surreal-panel-mark,
+.surreal-author-kicker,
+.surreal-cats-index {
+  color: rgba(255, 29, 29, 0.82);
+  letter-spacing: 0.42em;
+  text-shadow: 0 0 18px rgba(255, 29, 29, 0.35);
+  animation: unknownBreathe 4.2s ease-in-out infinite;
+}
+
+.surreal-panel:not(.surreal-panel-link) .surreal-panel-title {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255, 29, 29, 0.85);
+  text-shadow: 0 0 26px rgba(255, 29, 29, 0.28);
+  animation: unknownBreathe 4.6s ease-in-out infinite;
+}
+
+.surreal-panel:not(.surreal-panel-link) .surreal-panel-text,
+.surreal-author-bio,
+.surreal-author-social a,
+.surreal-about p,
+.surreal-archive-empty-mark {
+  color: rgba(138, 138, 138, 0.92);
+  letter-spacing: 0.3em;
+  animation: unknownBreathe 5.2s ease-in-out infinite;
+}
+
+.surreal-panel:not(.surreal-panel-link) .surreal-panel-text::after,
+.surreal-archive-empty-mark::after,
+.surreal-about p:last-child::after {
+  content: "▌";
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--surreal-red);
+  text-shadow: var(--neon-red);
+  animation: cursorBlink 1.15s steps(1, end) infinite;
+}
+
+/* 文章仓库空状态：呼吸描边的“空缺空间” */
+.surreal-archive-empty {
+  animation: archiveBreathe 5s ease-in-out infinite;
+}
+
+@keyframes archiveBreathe {
+  0%, 100% { border-color: rgba(58, 58, 58, 0.9); box-shadow: inset 0 0 0 rgba(255, 29, 29, 0); }
+  50% { border-color: rgba(255, 29, 29, 0.55); box-shadow: inset 0 0 60px rgba(255, 29, 29, 0.06); }
+}
+
+/* ---------- 首页三栏入场动画 ---------- */
+
+@keyframes panelRise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    filter: blur(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+.surreal-panel {
+  animation: panelRise 0.95s cubic-bezier(0.16, 0.84, 0.28, 1) both;
+}
+
+.surreal-panel:nth-of-type(1) { animation-delay: 0.06s; }
+.surreal-panel:nth-of-type(2) { animation-delay: 0.2s; }
+.surreal-panel:nth-of-type(3) { animation-delay: 0.34s; }
+
+/* ---------- 导航栏交互：扫光 / 字距突变 / 点击反色 ---------- */
+
+.main-menu .menu-item a {
+  background-image: linear-gradient(90deg, rgba(255, 29, 29, 0.32), rgba(255, 29, 29, 0.05) 58%, transparent);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.42s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s ease, letter-spacing 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.main-menu .menu-item a:hover,
+.main-menu .menu-item.menu-item-active a {
+  background-size: 100% 100%;
+  color: var(--surreal-white);
+  letter-spacing: 0.34em;
+}
+
+.main-menu .menu-item a i {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s ease;
+}
+
+.main-menu .menu-item a:hover i {
+  color: var(--surreal-white);
+  transform: rotate(90deg);
+}
+
+.main-menu .menu-item a:active {
+  background: var(--surreal-red);
+  color: var(--surreal-black);
+  transform: translateX(3px);
+}
+
+/* ---------- 全局滚动条：黑红灰白 + 红色细滑块 ---------- */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surreal-red) #0a0a0a;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070707;
+  border-left: 1px solid #1c1c1c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff1d1d 0%, #7a0b0b 100%);
+  border: 2px solid #070707;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff3b3b;
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+  background: #070707;
+}
+
+/* ---------- 致谢页：黑客终端阵列（2 × 3 网格 + 终端窗口 + 扫描线） ---------- */
+
+.post-block:has(.thanks-marker) .post-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.post-block:has(.thanks-marker) figure.highlight {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  padding-top: 0;
+  border: 1px solid var(--surreal-line);
+  border-left: 4px solid var(--surreal-red);
+  background: #070707 !important;
+  box-shadow: 8px 8px 0 -2px #0e0e0e, 0 0 0 1px rgba(255, 29, 29, 0.06);
+  animation: terminalIn 0.62s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.post-block:has(.thanks-marker) figure.highlight:nth-of-type(1) { animation-delay: 0.04s; }
+.post-block:has(.thanks-marker) figure.highlight:nth-of-type(2) { animation-delay: 0.1s; }
+.post-block:has(.thanks-marker) figure.highlight:nth-of-type(3) { animation-delay: 0.16s; }
+.post-block:has(.thanks-marker) figure.highlight:nth-of-type(4) { animation-delay: 0.22s; }
+.post-block:has(.thanks-marker) figure.highlight:nth-of-type(5) { animation-delay: 0.28s; }
+.post-block:has(.thanks-marker) figure.highlight:nth-of-type(6) { animation-delay: 0.34s; }
+
+@keyframes terminalIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* 终端标题栏：三个红/灰圆点 */
+.post-block:has(.thanks-marker) figure.highlight::before {
+  content: "";
+  display: block;
+  height: 26px;
+  margin: -1px -1px 0;
+  background:
+    radial-gradient(circle at 15px 13px, var(--surreal-red) 0 3px, transparent 3.6px),
+    radial-gradient(circle at 32px 13px, #5c5c5c 0 3px, transparent 3.6px),
+    radial-gradient(circle at 49px 13px, #2b2b2b 0 3px, transparent 3.6px),
+    #101010;
+  border-bottom: 1px solid var(--surreal-line);
+}
+
+/* 终端扫描线 */
+.post-block:has(.thanks-marker) figure.highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 26px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 29, 29, 0.6), transparent);
+  opacity: 0.45;
+  pointer-events: none;
+  animation: terminalScan 4.4s linear infinite;
+}
+
+@keyframes terminalScan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(320px); }
+}
+
+.post-block:has(.thanks-marker) figure.highlight .code pre {
+  padding: 16px 20px;
+  color: #f5f5f5;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
+}
+
+.post-block:has(.thanks-marker) figure.highlight:hover {
+  border-color: var(--surreal-red);
+  box-shadow: 0 0 0 1px var(--surreal-red), var(--neon-red), 8px 8px 0 -2px #0e0e0e;
+}
+
+/* ---------- 细节：卡片、侧边栏、页脚的霓虹收边 ---------- */
+
+.sidebar-inner::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin: 24px 18px 0;
+  background: linear-gradient(90deg, var(--surreal-red), transparent 70%);
+  opacity: 0.5;
+}
+
+.surreal-cats-root {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.surreal-cats-root:hover {
+  border-color: var(--surreal-red);
+  box-shadow: 0 0 0 1px var(--surreal-red), var(--neon-red), 8px 8px 0 0 #0e0e0e;
+}
+
+/* ---------- 响应式：终端阵列单列 ---------- */
+
+@media (max-width: 767px) {
+  .post-block:has(.thanks-marker) .post-body {
+    grid-template-columns: 1fr;
+  }
+
+  body::before {
+    animation: none;
+  }
+}
+
+/* ---------- 无障碍：尊重系统“减少动态效果”设置 ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body::before {
+    animation: none;
+  }
+}
+
+/* ---------- 字体宽度修正：Syne 字面较宽，避免标题/作者名折行或裁切 ---------- */
+
+.site-title,
+.site-title a {
+  white-space: nowrap;
+  font-size: 1em;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+}
+
+.site-subtitle {
+  letter-spacing: 0.32em;
+}
+
+.surreal-author-name {
+  white-space: nowrap;
+  font-size: 0.94em;
+  letter-spacing: 0.1em;
+}
+
+
