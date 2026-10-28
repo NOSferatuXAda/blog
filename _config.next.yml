@@ -29,9 +29,9 @@ social_icons:
   icons_only: false
   transition: false
 
-# 侧边栏作者窗口头像（红底白色生物图案）
+# 侧边栏作者窗口头像（红底白色生物动画 GIF）
 avatar:
-  url: /images/avatar.jpg
+  url: /images/avatar-surreal.gif
   rounded: false
   rotated: false
 

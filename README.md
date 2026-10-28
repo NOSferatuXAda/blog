@@ -55,7 +55,7 @@ npx hexo clean && npx hexo deploy
 | `source/_data/sidebar.njk` | 自定义侧边栏作者窗口 |
 | `source/_data/styles.styl` | Surreal 风格样式（红黑配色、几何线条、硬阴影、首页/分类/关于布局） |
 | `source/_data/variables.styl` | NexT 主题色板变量覆盖 |
-| `source/images/avatar.jpg` | 作者头像（红底白色生物图案） |
+| `source/images/avatar-surreal.gif` | 作者头像（红底白色生物动画 GIF） |
 | `_config.yml` | Hexo 站点配置（标题、作者、URL、部署目标） |
 | `_config.next.yml` | NexT 主题配置（导航、配色、代码块、自定义注入） |
 | `scaffolds/` | 新建文章的模板 |
