@@ -11,3 +11,5 @@ _multiconfig.yml
 .preview-*.png
 .shot-*.png
 .v-*.png
+.bili-*.jpg
+.fluid-*.png
