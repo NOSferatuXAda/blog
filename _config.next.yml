@@ -1,4 +1,4 @@
-﻿# NexT 主题自定义配置（覆盖主题默认值）
+# NexT 主题自定义配置（覆盖主题默认值）
 # 主题文档: https://theme-next.js.org/docs/theme-settings/
 # 说明：本站为「黑 / 红 / 灰 / 白 + Surreal」定制风格，
 #       所有未确定内容统一使用 unknown 作为占位符。
@@ -29,9 +29,9 @@ social_icons:
   icons_only: false
   transition: false
 
-# 侧边栏作者窗口头像占位图（默认作者块已被自定义卡片替代并隐藏）
+# 侧边栏作者窗口头像（红底白色生物图案）
 avatar:
-  url: /images/unknown-avatar.svg
+  url: /images/avatar.jpg
   rounded: false
   rotated: false
 
