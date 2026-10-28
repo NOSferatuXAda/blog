@@ -1,13 +1,13 @@
-# Hexo Configuration
+﻿# Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
 title: Creationism
-subtitle: '创造、记录与思考'
-description: 'NOSferatuXAda 的个人博客，记录技术、创造与思考。'
-keywords: 博客, 技术, 随笔
-author: NOSferatuXAda
+subtitle: 'unknown'
+description: 'unknown'
+keywords: unknown
+author: unknown
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
@@ -112,4 +112,4 @@ deploy:
   type: git
   repo: https://github.com/NOSferatuXAda/blog.git
   branch: gh-pages
-  message: 'Site updated: {{ now(''YYYY-MM-DD HH:mm:ss'') }}'
+  message: 'Site updated: {{ now(''yyyy-MM-dd HH:mm:ss'') }}'

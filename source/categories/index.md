@@ -1,6 +1,16 @@
 ---
 title: 分类
-date: 2026-10-28 11:30:00
-type: categories
 comments: false
 ---
+
+<div class="surreal-cats">
+  <div class="surreal-cats-root">
+    <span class="surreal-cats-index">unknown</span>
+    <span class="surreal-cats-name">全部</span>
+  </div>
+  <ul class="surreal-cats-children">
+    <li><a href="#unknown"><span class="surreal-cats-index">unknown</span><span class="surreal-cats-name">unknown</span></a></li>
+    <li><a href="#unknown"><span class="surreal-cats-index">unknown</span><span class="surreal-cats-name">unknown</span></a></li>
+    <li><a href="#unknown"><span class="surreal-cats-index">unknown</span><span class="surreal-cats-name">unknown</span></a></li>
+  </ul>
+</div>

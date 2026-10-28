@@ -1,0 +1,99 @@
+// ============================================================
+// 全局变量覆盖：黑 / 红 / 灰 / 白 —— Surreal 风格
+// 该文件在主题变量之后、颜色系统之前加载，
+// 因此这里的变量会覆盖 NexT 默认色板。
+// ============================================================
+
+// 色板
+$surreal-black       = #050505;
+$surreal-black-soft  = #0b0b0b;
+$surreal-panel       = #121212;
+$surreal-line        = #2b2b2b;
+$surreal-grey        = #8a8a8a;
+$surreal-white       = #f5f5f5;
+$surreal-red         = #ff1d1d;
+$surreal-red-deep    = #a80c0c;
+
+// 背景
+$body-bg-color       = $surreal-black;
+$content-bg-color    = $surreal-black-soft;
+$card-bg-color       = $surreal-panel;
+$menu-item-bg-color  = $surreal-panel;
+
+// 深色模式变量同步为同一套色板，保证任何情况下不出现浅色底
+$body-bg-color-dark    = $surreal-black;
+$content-bg-color-dark = $surreal-black-soft;
+$card-bg-color-dark    = $surreal-panel;
+$menu-item-bg-color-dark = $surreal-panel;
+
+// 文字与链接
+$text-color            = $surreal-white;
+$text-color-dark       = $surreal-white;
+$link-color            = $surreal-red;
+$link-color-dark       = $surreal-red;
+$link-hover-color      = $surreal-white;
+$link-hover-color-dark = $surreal-white;
+$link-decoration-color = $surreal-red;
+$blockquote-color      = $surreal-grey;
+$blockquote-color-dark = $surreal-grey;
+
+// 边框与选中态
+$border-color         = $surreal-line;
+$selection-bg         = $surreal-red;
+$selection-color      = $surreal-black;
+$selection-bg-dark    = $surreal-red;
+$selection-color-dark = $surreal-black;
+
+// 主题色 / 品牌色
+$theme-color       = $surreal-red;
+$theme-color-dark  = $surreal-red;
+$brand-color       = $surreal-white;
+$brand-hover-color = $surreal-red;
+
+// 圆角与阴影：取消圆角，具体阴影效果在 styles.styl 中按组件单独定义
+$border-radius       = 0;
+$border-radius-inner = 0;
+$box-shadow          = initial;
+$box-shadow-inner    = initial;
+
+// 侧边栏
+$sidebar-nav-color         = $surreal-grey;
+$sidebar-nav-hover-color   = $surreal-red;
+$sidebar-highlight         = $surreal-red;
+$site-author-name-color    = $surreal-white;
+$site-author-image-width   = 120px;
+$site-author-image-border-color = $surreal-red;
+$site-description-color    = $surreal-grey;
+$site-state-item-name-color = $surreal-grey;
+
+// 代码块
+$highlight-background        = #0a0a0a;
+$highlight-foreground        = $surreal-white;
+$highlight-gutter-background = #0f0f0f;
+$highlight-gutter-foreground = #555555;
+$highlight-background-dark        = #0a0a0a;
+$highlight-foreground-dark        = $surreal-white;
+$highlight-gutter-background-dark = #0f0f0f;
+$highlight-gutter-foreground-dark = #555555;
+
+// 表格（代码块内部也是 table，避免出现浅色行底）
+$table-border-color             = $surreal-line;
+$table-cell-border-bottom-color = $surreal-line;
+$table-row-odd-bg-color         = transparent;
+$table-row-hover-bg-color       = transparent;
+$table-row-odd-bg-color-dark    = transparent;
+$table-row-hover-bg-color-dark  = transparent;
+
+// 按钮
+$btn-default-radius         = 0;
+$btn-default-bg             = $surreal-red;
+$btn-default-color          = $surreal-black;
+$btn-default-border-color   = $surreal-red;
+$btn-default-hover-bg       = $surreal-black;
+$btn-default-hover-color    = $surreal-white;
+$btn-default-hover-border-color = $surreal-red;
+
+// 角标
+$badge-background    = $surreal-red;
+$badge-border-radius = 0;
+$badge-color         = $surreal-black;

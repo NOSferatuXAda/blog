@@ -1,37 +1,38 @@
-# NexT 主题自定义配置（覆盖主题默认值）
+﻿# NexT 主题自定义配置（覆盖主题默认值）
 # 主题文档: https://theme-next.js.org/docs/theme-settings/
-# 本文件只写需要覆盖的配置项，其余保持主题默认值。
+# 说明：本站为「黑 / 红 / 灰 / 白 + Surreal」定制风格，
+#       所有未确定内容统一使用 unknown 作为占位符。
 
 # 主题风格：Muse | Mist | Pisces | Gemini
 scheme: Gemini
 
-# 深色模式开关（右上角可切换）
-darkmode: true
+# 全局配色固定为黑红灰白（关闭自动深色模式，避免覆盖自定义色板）
+darkmode: false
 
-# 顶部导航菜单
+# 导航栏：四个核心类别（中文键名会直接作为显示文案）
 menu:
-  home: / || fa fa-home
-  archives: /archives/ || fa fa-archive
-  tags: /tags/ || fa fa-tags
-  categories: /categories/ || fa fa-layer-group
-  about: /about/ || fa fa-user
+  首页: / || fa fa-home
+  分类: /categories/ || fa fa-layer-group
+  关于: /about/ || fa fa-user
+  致谢: /thanks/ || fa fa-heart
 
 menu_settings:
-  badges: true
+  badges: false
   icons: true
 
-# 社交链接（显示在侧边栏）
+# 社交链接占位（作者窗口使用自定义侧边栏卡片，见 source/_data/sidebar.njk）
 social:
-  GitHub: https://github.com/NOSferatuXAda || fab fa-github
+  unknown: /unknown/ || fa fa-question
 
 social_icons:
   enable: true
   icons_only: false
-  transition: true
+  transition: false
 
+# 侧边栏作者窗口头像占位图（默认作者块已被自定义卡片替代并隐藏）
 avatar:
-  url: # /images/avatar.gif
-  rounded: true
+  url: /images/unknown-avatar.svg
+  rounded: false
   rotated: false
 
 sidebar:
@@ -40,9 +41,12 @@ sidebar:
   padding: 18
   offset: 12
 
-# 文章目录
+# 关闭 NexT 默认的站点统计块（由自定义作者窗口承载）
+site_state: false
+
+# 文章目录（保留给未来的文章页）
 toc:
-  enable: true
+  enable: false
   number: true
   wrap: true
   expand_all: false
@@ -53,13 +57,8 @@ reading_progress:
   enable: true
   start_at: left
   position: top
-  color: "#37c6c0"
-  height: 3px
-
-# 阅读进度自动书签
-bookmark:
-  enable: true
-  save: auto
+  color: "#ff1d1d"
+  height: 2px
 
 # 返回顶部
 back2top:
@@ -69,7 +68,7 @@ back2top:
 
 # 页面切换动画
 motion:
-  enable: true
+  enable: false
   async: true
   transition:
     post_block: fadeIn
@@ -78,36 +77,56 @@ motion:
     coll_header: fadeInLeft
     sidebar: fadeInUp
 
-# 代码块
+# 代码块：统一使用深色高亮主题，配合黑红配色
 codeblock:
   theme:
-    light: default
+    light: stackoverflow-dark
     dark: stackoverflow-dark
   copy_button:
     enable: true
-    style: mac
+    style: flat
   language: true
+
+# 行内代码 / 代码块基底配色（供主题变量使用）
+highlight:
+  light:
+    background: "#0a0a0a"
+    foreground: "#f2f2f2"
+  dark:
+    background: "#0a0a0a"
+    foreground: "#f2f2f2"
 
 # 图片灯箱
 fancybox: true
 
-# 站内搜索（hexo-generator-searchdb）
+# 站内搜索：首页不再展示文章列表，暂关闭搜索入口
 local_search:
-  enable: true
+  enable: false
   trigger: auto
   top_n_per_article: 1
   unescape: false
-  preload: true
+  preload: false
 
 # 页脚
 footer:
   since: 2026
   icon:
-    name: fa fa-heart
-    animated: true
-    color: "#ff0000"
+    name: fa fa-circle
+    animated: false
+    color: "#ff1d1d"
   copyright:
   powered: true
+
+# 浏览器主题色
+theme_color:
+  light: "#ff1d1d"
+  dark: "#ff1d1d"
+
+# 自定义变量 / 自定义样式 / 自定义侧边栏作者卡片
+custom_file_path:
+  variable: source/_data/variables.styl
+  style: source/_data/styles.styl
+  sidebar: source/_data/sidebar.njk
 
 # 资源本地化，不依赖境外 CDN
 vendors:

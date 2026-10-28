@@ -9,3 +9,4 @@ _multiconfig.yml
 # 本地验证截图
 .live-home.png
 .preview-*.png
+.shot-*.png
