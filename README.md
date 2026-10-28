@@ -4,6 +4,7 @@
 
 - 🌐 线上地址：<https://nosferatuxada.github.io/blog/>
 - 📦 仓库：<https://github.com/NOSferatuXAda/blog>
+- 📘 完整改造文档：[docs/customize-guide.md](docs/customize-guide.md)（配置 / 页面 / CSS 全量代码 + Butterfly/Fluid 移植说明）
 - 🚀 发布方式：源码在 `main` 分支，构建产物由 `hexo-deployer-git` 推送到 `gh-pages` 分支，GitHub Pages 从该分支发布。
 
 ## 当前定制内容
