@@ -67,7 +67,7 @@
   var GAP_X = 14;    // 竖线间距
   var GAP_Y = 26;    // 采样点间距
   var PADDING = 180; // 两侧外扩，保证鼠标拨动时不出边
-  var MOUSE_RADIUS = 190;
+  var MOUSE_RADIUS = 90;
 
   var width = 0;
   var height = 0;
@@ -122,8 +122,8 @@
   }
 
   function updatePoints(dt) {
-    var noiseT = time * 0.0125;
-    var noiseT2 = time * 0.005;
+    var noiseT = time * 0.009;
+    var noiseT2 = time * 0.004;
 
     for (var li = 0; li < lines.length; li++) {
       var points = lines[li];
@@ -132,8 +132,8 @@
 
         // 1) 缓慢的波场起伏
         var move = perlin2((p.x + noiseT) * 0.002, (p.y + noiseT2) * 0.0015) * 12;
-        p.waveX = Math.cos(move) * 34;
-        p.waveY = Math.sin(move) * 16;
+        p.waveX = Math.cos(move) * 26;
+        p.waveY = Math.sin(move) * 12;
 
         // 2) 鼠标拨弦（只在交互半径内施加冲量）
         if (mouse.set) {
@@ -143,20 +143,20 @@
           if (dist < MOUSE_RADIUS) {
             var s = 1 - dist / MOUSE_RADIUS;
             var f = Math.cos(dist * 0.01) * s;
-            p.vx += Math.cos(mouse.a) * f * MOUSE_RADIUS * mouse.vs * 0.00065;
-            p.vy += Math.sin(mouse.a) * f * MOUSE_RADIUS * mouse.vs * 0.00065;
+            p.vx += Math.cos(mouse.a) * f * MOUSE_RADIUS * mouse.vs * 0.00032;
+            p.vy += Math.sin(mouse.a) * f * MOUSE_RADIUS * mouse.vs * 0.00032;
           }
         }
 
         // 3) 弹簧回归
-        p.vx += -p.cx * 0.005;
-        p.vy += -p.cy * 0.005;
-        p.vx *= 0.925;
-        p.vy *= 0.925;
+        p.vx += -p.cx * 0.008;
+        p.vy += -p.cy * 0.008;
+        p.vx *= 0.90;
+        p.vy *= 0.90;
         p.cx += p.vx * 2;
         p.cy += p.vy * 2;
-        p.cx = Math.max(-120, Math.min(120, p.cx));
-        p.cy = Math.max(-120, Math.min(120, p.cy));
+        p.cx = Math.max(-70, Math.min(70, p.cx));
+        p.cy = Math.max(-70, Math.min(70, p.cy));
       }
     }
 
@@ -174,9 +174,9 @@
       var lineX = points[0].x;
       var proximity = 0;
       if (mouse.set) {
-        proximity = Math.max(0, 1 - Math.abs(lineX - mouse.sx) / 420);
+        proximity = Math.max(0, 1 - Math.abs(lineX - mouse.sx) / 320);
       }
-      var alpha = 0.075 + proximity * 0.30;
+      var alpha = 0.065 + proximity * 0.16;
 
       ctx.beginPath();
       for (var pi = 0; pi < points.length; pi++) {
@@ -205,15 +205,15 @@
 
     // 平滑鼠标 + 速度/角度
     if (mouse.set) {
-      mouse.sx += (mouse.x - mouse.sx) * 0.1;
-      mouse.sy += (mouse.y - mouse.sy) * 0.1;
+      mouse.sx += (mouse.x - mouse.sx) * 0.07;
+      mouse.sy += (mouse.y - mouse.sy) * 0.07;
 
       var dx = mouse.x - mouse.lx;
       var dy = mouse.y - mouse.ly;
       var d = Math.sqrt(dx * dx + dy * dy);
       mouse.v = d;
       mouse.vs += (d - mouse.vs) * 0.1;
-      mouse.vs = Math.min(100, mouse.vs);
+      mouse.vs = Math.min(60, mouse.vs);
       mouse.lx = mouse.x;
       mouse.ly = mouse.y;
       mouse.a = Math.atan2(dy, dx);
