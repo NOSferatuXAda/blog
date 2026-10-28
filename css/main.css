@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #bb49eb;
+    background: #eeffcb;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3759,28 +3759,27 @@ html {
   letter-spacing: 0.1em;
 }
 /* ============================================================
-   Surreal 液态流体背景（WebGL）
+   Wodniack 风格波场背景（Canvas 线场）
    ============================================================ */
-.fluid-bg {
+.waves-bg {
   position: fixed;
   inset: 0;
   z-index: -2;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.85;
-  filter: saturate(1.08);
+  opacity: 0.9;
 }
 @media print {
-  .fluid-bg {
+  .waves-bg {
     display: none;
   }
 }
 /* 背景分层：body 背景会覆盖 z-index 为负的 fixed 元素，
-   把渐变/底色移到 <html>、body 透明，流体背景才能显示在内容之下。 */
+   把渐变/底色移到 <html>、body 透明，线场背景才能显示在内容之下。 */
 html {
   background-color: var(--surreal-black);
-  background-image: radial-gradient(ellipse at 72% 18%, rgba(255,29,29,0.05), transparent 52%), repeating-linear-gradient(135deg, rgba(255,29,29,0.04) 0, rgba(255,29,29,0.04) 1px, transparent 1px, transparent 110px);
+  background-image: radial-gradient(ellipse at 72% 18%, rgba(255,29,29,0.05), transparent 52%), radial-gradient(ellipse at 18% 82%, rgba(255,240,235,0.02), transparent 55%);
   background-attachment: fixed;
 }
 body {
