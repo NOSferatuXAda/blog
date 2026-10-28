@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello, Hexo</title>
+    <url>/blog/posts/hello-hexo/</url>
+    <content><![CDATA[<p>欢迎来到我的新博客 👋</p>
+<p>这里由 <a href="https://hexo.io/">Hexo</a> 驱动，使用 <a href="https://theme-next.js.org/">NexT</a> 主题，托管在 GitHub Pages 上。之后我会在这里记录技术、创造与思考。</p>
+<h2 id="这个博客有什么"><a href="#这个博客有什么" class="headerlink" title="这个博客有什么"></a>这个博客有什么</h2><ul>
+<li><strong>文章</strong>：记录学习笔记、项目复盘和一些零散的想法。</li>
+<li><strong>标签与分类</strong>：方便按主题翻阅历史文章。</li>
+<li><strong>站内搜索</strong>：点击侧边栏的放大镜即可搜索全文。</li>
+</ul>
+<h2 id="为什么用静态博客"><a href="#为什么用静态博客" class="headerlink" title="为什么用静态博客"></a>为什么用静态博客</h2><p>静态站点没有数据库和服务器负担，写作只需要一个 Markdown 文件，构建后的 HTML 可以直接托管在任何静态服务上，速度快、维护成本低。</p>
+<blockquote>
+<p>写作的意义在于把模糊的直觉变成清晰的语言。</p>
+</blockquote>
+<p>接下来会陆续更新内容，欢迎常来看看。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Build This Blog with Hexo, NexT and GitHub Pages</title>
+    <url>/blog/posts/build-this-blog/</url>
+    <content><![CDATA[<p>这篇文章记录本站的搭建过程，方便以后迁移或重装时对照。</p>
+<h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><table>
+<thead>
+<tr>
+<th>组成</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hexo 8</td>
+<td>静态站点生成器</td>
+</tr>
+<tr>
+<td>NexT 8</td>
+<td>博客主题</td>
+</tr>
+<tr>
+<td>GitHub Pages</td>
+<td>免费静态托管</td>
+</tr>
+</tbody></table>
+<h2 id="本地写作流程"><a href="#本地写作流程" class="headerlink" title="本地写作流程"></a>本地写作流程</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建文章</span></span><br><span class="line">npx hexo new <span class="string">&quot;文章标题&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地预览（http://localhost:4000/blog/）</span></span><br><span class="line">npx hexo server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成静态文件</span></span><br><span class="line">npx hexo generate</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署流程"><a href="#部署流程" class="headerlink" title="部署流程"></a>部署流程</h2><p>生成后的 <code>public/</code> 目录会由 <code>hexo-deployer-git</code> 推送到 GitHub 仓库的 <code>gh-pages</code> 分支，GitHub Pages 再从该分支发布站点。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npx hexo clean &amp;&amp; npx hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="站点配置要点"><a href="#站点配置要点" class="headerlink" title="站点配置要点"></a>站点配置要点</h2><ul>
+<li><code>url</code> 与 <code>root</code> 必须和仓库的访问路径一致，否则 CSS、图片等静态资源会 404。</li>
+<li>项目仓库的站点根路径是 <code>/&lt;仓库名&gt;/</code>，用户主页仓库（<code>用户名.github.io</code>）则是 <code>/</code>。</li>
+<li>主题配置集中写在根目录的 <code>_config.next.yml</code> 中，升级主题时不会丢失自定义设置。</li>
+</ul>
+<h2 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h2><ol>
+<li>增加更多技术笔记与项目记录。</li>
+<li>更换头像与站点图标。</li>
+<li>按需接入评论系统。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+</search>
