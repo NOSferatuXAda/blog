@@ -78,14 +78,15 @@ motion:
     sidebar: fadeInUp
 
 # 代码块：统一使用深色高亮主题，配合黑红配色
+# 关闭一键复制按钮，并关闭语言标识（大标题/水印）
 codeblock:
   theme:
     light: stackoverflow-dark
     dark: stackoverflow-dark
   copy_button:
-    enable: true
+    enable: false
     style: flat
-  language: true
+  language: false
 
 # 行内代码 / 代码块基底配色（供主题变量使用）
 highlight:
