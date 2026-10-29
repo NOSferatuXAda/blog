@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
 
-    <meta name="description" content="2026.10.29      更新日志上线   本站从今天开始维护一份公开的更新日志：以后每次对网页进行调整，都会在这里留下一条记录。  入口：分类页 →「公告」，即可查看完整时间轴 排序：最新在最上方 范围：视觉、排版、交互、背景、页面结构等所有可见改动  你也可以把这里当作「这个博客最近发生了什么」的快速浏览页。              2026.10.28">
+    <meta name="description" content="2026.10.29      新功能：最新公告自动弹窗   打开网页时会自动检查最新一条公告；如果这条公告还没有被「不再提醒」，就会以 Surreal 风格弹窗展示。  点击右上角 ×、按 Esc、或点击遮罩空白处可关闭 左下角「不再提醒」会把当前公告版本写入浏览器 localStorage，下次不再弹出 发布新公告后版本号变化，弹窗会重新出现 公告页 &#x2F;log">
 <meta property="og:type" content="website">
 <meta property="og:title" content="公告">
 <meta property="og:url" content="https://nosferatuxada.github.io/blog/logs/">
 <meta property="og:site_name" content="Creationism">
-<meta property="og:description" content="2026.10.29      更新日志上线   本站从今天开始维护一份公开的更新日志：以后每次对网页进行调整，都会在这里留下一条记录。  入口：分类页 →「公告」，即可查看完整时间轴 排序：最新在最上方 范围：视觉、排版、交互、背景、页面结构等所有可见改动  你也可以把这里当作「这个博客最近发生了什么」的快速浏览页。              2026.10.28">
+<meta property="og:description" content="2026.10.29      新功能：最新公告自动弹窗   打开网页时会自动检查最新一条公告；如果这条公告还没有被「不再提醒」，就会以 Surreal 风格弹窗展示。  点击右上角 ×、按 Esc、或点击遮罩空白处可关闭 左下角「不再提醒」会把当前公告版本写入浏览器 localStorage，下次不再弹出 发布新公告后版本号变化，弹窗会重新出现 公告页 &#x2F;log">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-10-29T04:59:57.619Z">
 <meta property="article:modified_time" content="2026-10-29T04:59:57.619Z">
@@ -212,6 +212,22 @@
 <article class="surreal-timeline-item">
   <div class="surreal-timeline-dot" aria-hidden="true"></div>
   <div class="surreal-timeline-meta">
+    <time datetime="2026-10-29T05:55:00.000Z">2026.10.29</time>
+  </div>
+  <h3 class="surreal-timeline-title">新功能：最新公告自动弹窗</h3>
+  <div class="surreal-timeline-body"><p>打开网页时会自动检查最新一条公告；如果这条公告还没有被「不再提醒」，就会以 Surreal 风格弹窗展示。</p>
+<ul>
+<li>点击右上角 ×、按 Esc、或点击遮罩空白处可关闭</li>
+<li>左下角「不再提醒」会把当前公告版本写入浏览器 localStorage，下次不再弹出</li>
+<li>发布新公告后版本号变化，弹窗会重新出现</li>
+<li>公告页 &#x2F;logs&#x2F; 本身不会弹窗，避免遮挡时间轴</li>
+<li>弹窗数据来自静态 logs.json，只在页面加载后请求一次，不参与背景动画循环</li>
+</ul>
+</div>
+</article>
+<article class="surreal-timeline-item">
+  <div class="surreal-timeline-dot" aria-hidden="true"></div>
+  <div class="surreal-timeline-meta">
     <time datetime="2026-10-29T05:00:00.000Z">2026.10.29</time>
   </div>
   <h3 class="surreal-timeline-title">更新日志上线</h3>
@@ -303,7 +319,31 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
-﻿<script src="/blog/js/waves-bg.js" defer></script>
+<script src="/blog/js/waves-bg.js" defer></script>
+
+<div class="surreal-announcement" id="surreal-announcement" role="dialog" aria-modal="true" aria-labelledby="surreal-announcement-title" hidden>
+  <div class="surreal-announcement__backdrop" data-close="overlay"></div>
+  <div class="surreal-announcement__frame">
+    <div class="surreal-announcement__panel">
+      <button type="button" class="surreal-announcement__close" data-close="button" aria-label="关闭公告">×</button>
+      <p class="surreal-announcement__kicker">最新公告</p>
+      <h2 class="surreal-announcement__title" id="surreal-announcement-title"></h2>
+      <p class="surreal-announcement__date"></p>
+      <div class="surreal-announcement__body"></div>
+      <div class="surreal-announcement__actions">
+        <button type="button" class="surreal-announcement__dismiss" data-dismiss>不再提醒</button>
+        <a class="surreal-announcement__more" href="/blog/logs/">查看全部公告 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.__SURREAL_ANNOUNCEMENT__ = {
+    jsonUrl: "/blog/logs.json",
+    pageUrl: "/blog/logs/"
+  };
+</script>
+<script src="/blog/js/announcement-popup.js" defer></script>
 
 </body>
 </html>

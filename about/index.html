@@ -272,7 +272,31 @@
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
-﻿<script src="/blog/js/waves-bg.js" defer></script>
+<script src="/blog/js/waves-bg.js" defer></script>
+
+<div class="surreal-announcement" id="surreal-announcement" role="dialog" aria-modal="true" aria-labelledby="surreal-announcement-title" hidden>
+  <div class="surreal-announcement__backdrop" data-close="overlay"></div>
+  <div class="surreal-announcement__frame">
+    <div class="surreal-announcement__panel">
+      <button type="button" class="surreal-announcement__close" data-close="button" aria-label="关闭公告">×</button>
+      <p class="surreal-announcement__kicker">最新公告</p>
+      <h2 class="surreal-announcement__title" id="surreal-announcement-title"></h2>
+      <p class="surreal-announcement__date"></p>
+      <div class="surreal-announcement__body"></div>
+      <div class="surreal-announcement__actions">
+        <button type="button" class="surreal-announcement__dismiss" data-dismiss>不再提醒</button>
+        <a class="surreal-announcement__more" href="/blog/logs/">查看全部公告 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.__SURREAL_ANNOUNCEMENT__ = {
+    jsonUrl: "/blog/logs.json",
+    pageUrl: "/blog/logs/"
+  };
+</script>
+<script src="/blog/js/announcement-popup.js" defer></script>
 
 </body>
 </html>
