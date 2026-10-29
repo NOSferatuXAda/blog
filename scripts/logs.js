@@ -32,6 +32,14 @@ function formatDate(date) {
   return date.getFullYear() + '.' + pad(date.getMonth() + 1) + '.' + pad(date.getDate());
 }
 
+function hashString(str) {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
+  }
+  return (hash >>> 0).toString(36);
+}
+
 function loadLogs() {
   const dir = path.join(hexo.base_dir, 'source', '_logs');
   if (!fs.existsSync(dir)) return [];
@@ -55,8 +63,12 @@ function loadLogs() {
         rendered = '<p>' + escapeHtml(body) + '</p>';
       }
 
+      const title = data.title || 'unknown';
+      const version = date.toISOString() + '-' + hashString(file + '|' + title);
+
       return {
-        title: data.title || 'unknown',
+        version: version,
+        title: title,
         date: date,
         rendered: rendered
       };
@@ -68,6 +80,25 @@ function loadLogs() {
 hexo.extend.filter.register('before_generate', function () {
   cachedLogs = loadLogs();
 }, 9);
+
+// 输出静态 JSON：供“最新公告自动弹窗”等前端功能读取
+hexo.extend.generator.register('logs-json', function () {
+  const logs = cachedLogs || loadLogs();
+  const root = hexo.config.root || '/';
+  const payload = logs.map(item => ({
+    version: item.version,
+    title: item.title,
+    date: item.date.toISOString(),
+    dateText: formatDate(item.date),
+    content: item.rendered,
+    url: root + 'logs/'
+  }));
+
+  return {
+    path: 'logs.json',
+    data: JSON.stringify(payload)
+  };
+});
 
 hexo.extend.tag.register('logs', function () {
   const logs = cachedLogs || loadLogs();

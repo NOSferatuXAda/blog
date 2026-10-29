@@ -48,6 +48,16 @@ date: 2026-11-01 10:00:00
 - `/logs/` 页面正文只有 `{% logs %}`，时间轴由 `scripts/logs.js` 生成。
 - 公告仓库与 `/archives/` 文章仓库完全分离。
 
+## 最新公告自动弹窗
+
+- **数据**：`/logs.json`（由 `scripts/logs.js` 生成，数组第一项即最新公告；包含 `version / title / dateText / content / url`）。
+- **触发**：页面 `load` 后约 0.9s 请求一次 JSON；若 `localStorage` 中记录的版本号与最新 `version` 不同，则弹出。
+- **关闭**：右上角 `×`、`Esc`、点击遮罩空白处；这些操作**不**写入 localStorage。
+- **不再提醒**：左下角按钮，把当前 `version` 写入 `surreal-announcement-dismissed`；同版本不再弹出。
+- **新公告**：`version` 由 `日期 + 标题/文件名 hash` 生成，新公告发布后版本变化，会重新弹出。
+- **公告页排除**：`/logs/` 本身不弹窗，避免遮挡用户正在阅读的时间轴。
+- **性能**：只请求一次小 JSON，弹窗显示/关闭无持续定时器，不参与背景动画的 rAF，实测弹窗打开时背景仍保持 60 FPS。
+
 ## 环境要求
 
 - Node.js 18+（当前使用 Node 24）
