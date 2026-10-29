@@ -1,4 +1,4 @@
-<script src="{{ config.root }}js/waves-bg.js" defer></script>
+﻿<script src="{{ config.root }}js/waves-bg.js" defer></script>
 
 <div class="surreal-announcement" id="surreal-announcement" role="dialog" aria-modal="true" aria-labelledby="surreal-announcement-title" hidden>
   <div class="surreal-announcement__backdrop" data-close="overlay"></div>
@@ -23,3 +23,20 @@
   };
 </script>
 <script src="{{ config.root }}js/announcement-popup.js" defer></script>
+
+<script>
+  /**
+   * 留言板配置
+   * 留空 = 演示模式（数据只存在当前浏览器，仅本机可见）
+   * 填入 Supabase 项目的 URL 与 anon public key 后，所有访客共享留言。
+   * 注意：这里只能放 anon public key，绝不能放 service_role key。
+   */
+  window.__SURREAL_MESSAGE__ = {
+    supabaseUrl: "",
+    supabaseAnonKey: "",
+    table: "messages",
+    maxLength: 500
+  };
+</script>
+<script src="{{ config.root }}js/message-board.js" defer></script>
+

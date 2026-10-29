@@ -1799,3 +1799,464 @@ html.announcement-open body {
   }
 }
 
+/* ============================================================
+   留言板
+   ============================================================ */
+
+.surreal-message [hidden] {
+  display: none !important;
+}
+
+.surreal-message__head {
+  margin-bottom: 34px;
+}
+
+.surreal-message__kicker {
+  margin: 0 0 14px;
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+}
+
+.surreal-message__title {
+  margin: 0 0 16px;
+  color: var(--surreal-white);
+  font-family: var(--font-display);
+  font-size: clamp(2.1em, 4.4vw, 3em);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.surreal-message__intro {
+  max-width: 54ch;
+  margin: 0;
+  color: var(--surreal-grey);
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+}
+
+.surreal-message__notice {
+  margin: 0 0 26px;
+  padding: 12px 16px;
+  border: 1px dashed rgba(255, 29, 29, 0.36);
+  background: rgba(255, 29, 29, 0.05);
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+}
+
+/* ---------- 表单 ---------- */
+
+.surreal-message-form {
+  position: relative;
+  margin: 0 0 48px;
+  padding: 30px 28px 26px;
+  border: 1px solid var(--surreal-line-light);
+  background: rgba(8, 8, 8, 0.74);
+  box-shadow: 8px 8px 0 -3px #0e0e0e;
+}
+
+.surreal-message-form::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 72px;
+  height: 3px;
+  background: var(--surreal-red);
+  box-shadow: 0 0 18px rgba(255, 29, 29, 0.6);
+}
+
+.surreal-message-form__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--surreal-line);
+}
+
+.surreal-message-form__row-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.surreal-message-form__label {
+  display: block;
+  color: var(--surreal-white);
+  font-family: var(--font-mono);
+  font-size: 0.74em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.surreal-message-form__help {
+  color: var(--surreal-grey-dark);
+  font-family: var(--font-mono);
+  font-size: 0.66em;
+  letter-spacing: 0.08em;
+}
+
+.surreal-message-form__field {
+  margin-bottom: 22px;
+}
+
+.surreal-message-form__label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.surreal-message-form__counter {
+  color: var(--surreal-grey-dark);
+  font-family: var(--font-mono);
+  font-size: 0.66em;
+  letter-spacing: 0.14em;
+}
+
+.surreal-message-form__counter.is-near-limit {
+  color: var(--surreal-red);
+}
+
+.surreal-input,
+.surreal-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--surreal-line);
+  border-radius: 0;
+  background: rgba(5, 5, 5, 0.92);
+  color: var(--surreal-white);
+  font-family: inherit;
+  font-size: 0.92em;
+  letter-spacing: 0.03em;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.surreal-input::placeholder,
+.surreal-textarea::placeholder {
+  color: var(--surreal-grey-dark);
+}
+
+.surreal-input:focus,
+.surreal-textarea:focus {
+  outline: none;
+  border-color: var(--surreal-red);
+  box-shadow: 0 0 0 1px rgba(255, 29, 29, 0.32), 0 0 18px rgba(255, 29, 29, 0.08);
+}
+
+.surreal-textarea {
+  min-height: 150px;
+  line-height: 1.85;
+  resize: vertical;
+}
+
+/* 自定义开关 */
+.surreal-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.surreal-switch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.surreal-switch__track {
+  position: relative;
+  display: block;
+  width: 46px;
+  height: 24px;
+  border: 1px solid var(--surreal-line-light);
+  background: #080808;
+  transition: border-color 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.surreal-switch__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--surreal-grey);
+  transition: transform 0.22s ease, background-color 0.22s ease;
+}
+
+.surreal-switch__input:checked + .surreal-switch__track {
+  border-color: var(--surreal-red);
+  background: rgba(255, 29, 29, 0.1);
+  box-shadow: 0 0 14px rgba(255, 29, 29, 0.18);
+}
+
+.surreal-switch__input:checked + .surreal-switch__track .surreal-switch__thumb {
+  transform: translateX(22px);
+  background: var(--surreal-red);
+}
+
+.surreal-switch__input:focus-visible + .surreal-switch__track {
+  outline: 1px solid var(--surreal-red);
+  outline-offset: 3px;
+}
+
+.surreal-switch__text {
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.surreal-switch__input:checked ~ .surreal-switch__text {
+  color: var(--surreal-white);
+}
+
+.surreal-message-form__hp {
+  position: absolute !important;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.surreal-message-form__actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.surreal-message-form__submit {
+  flex-shrink: 0;
+  padding: 14px 28px;
+  border: 1px solid var(--surreal-red);
+  border-radius: 0;
+  background: transparent;
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+  font-size: 0.76em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.24s ease, color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.surreal-message-form__submit:hover {
+  background: var(--surreal-red);
+  color: var(--surreal-black);
+  box-shadow: 0 0 24px rgba(255, 29, 29, 0.28);
+}
+
+.surreal-message-form__submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.surreal-message-form__submit:focus-visible {
+  outline: 1px solid var(--surreal-red);
+  outline-offset: 3px;
+}
+
+.surreal-message-form__status {
+  margin: 0;
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+}
+
+.surreal-message-form__status.is-error {
+  color: var(--surreal-red);
+}
+
+.surreal-message-form__status.is-success {
+  color: var(--surreal-white);
+}
+
+.surreal-message-form__privacy {
+  margin: 14px 0 0;
+  color: var(--surreal-grey-dark);
+  font-family: var(--font-mono);
+  font-size: 0.64em;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- 留言列表 ---------- */
+
+.surreal-message-list__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--surreal-line);
+}
+
+.surreal-message-list__title {
+  margin: 0;
+  color: var(--surreal-white);
+  font-family: var(--font-display);
+  font-size: 1.15em;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.surreal-message-list__count {
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+  font-size: 0.68em;
+  letter-spacing: 0.22em;
+}
+
+.surreal-message-items {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.surreal-message-card {
+  position: relative;
+  padding: 20px 24px 22px;
+  border: 1px solid var(--surreal-line);
+  background: rgba(10, 10, 10, 0.74);
+  box-shadow: 6px 6px 0 -2px #0e0e0e;
+  transition: border-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.surreal-message-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 2px;
+  height: 42px;
+  background: var(--surreal-red);
+}
+
+.surreal-message-card:hover {
+  border-color: rgba(255, 29, 29, 0.45);
+  transform: translateX(3px);
+  box-shadow: 0 0 0 1px rgba(255, 29, 29, 0.18), 6px 6px 0 -2px #0e0e0e;
+}
+
+.surreal-message-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.64em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.surreal-message-card__index {
+  color: var(--surreal-red);
+}
+
+.surreal-message-card__name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 8px;
+  color: var(--surreal-white);
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  letter-spacing: 0.12em;
+}
+
+.surreal-message-card__name.is-anon {
+  color: var(--surreal-grey);
+}
+
+.surreal-message-card__badge {
+  padding: 2px 6px;
+  border: 1px solid var(--surreal-line-light);
+  color: var(--surreal-grey);
+  font-size: 0.72em;
+  letter-spacing: 0.14em;
+}
+
+.surreal-message-card__body {
+  margin: 0;
+  color: #d2d2d2;
+  font-size: 0.94em;
+  line-height: 1.95;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.surreal-message-list__empty,
+.surreal-message-list__loading {
+  margin: 0;
+  padding: 32px 20px;
+  border: 1px dashed var(--surreal-line-light);
+  color: var(--surreal-grey-dark);
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.16em;
+  text-align: center;
+}
+
+.surreal-message-list__loading {
+  border: 0;
+  padding: 18px 0;
+}
+
+@media (max-width: 767px) {
+  .surreal-message-form {
+    padding: 22px 18px 20px;
+  }
+
+  .surreal-message-form__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .surreal-message-form__actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .surreal-message-form__submit {
+    width: 100%;
+  }
+
+  .surreal-message-card {
+    padding: 18px 18px 20px;
+  }
+
+  .surreal-message-card:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surreal-switch__thumb,
+  .surreal-switch__track,
+  .surreal-message-card,
+  .surreal-message-form__submit {
+    transition: none;
+  }
+}
+

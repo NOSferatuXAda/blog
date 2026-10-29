@@ -1,0 +1,87 @@
+---
+title: 留言板
+comments: false
+header: false
+---
+
+<div class="surreal-message" id="surreal-message">
+  <header class="surreal-message__head">
+    <p class="surreal-message__kicker">GUESTBOOK / 留言板</p>
+    <h1 class="surreal-message__title">留下你的痕迹</h1>
+    <p class="surreal-message__intro">
+      可以留下名字，也可以完全匿名。留言会公开显示，请勿填写隐私信息。
+    </p>
+  </header>
+
+  <p class="surreal-message__notice" data-mode-notice hidden></p>
+
+  <form class="surreal-message-form" id="surreal-message-form" novalidate>
+    <div class="surreal-message-form__row">
+      <div class="surreal-message-form__row-copy">
+        <span class="surreal-message-form__label">是否留名</span>
+        <span class="surreal-message-form__help">关闭开关即匿名，不会显示名字</span>
+      </div>
+
+      <label class="surreal-switch" for="surreal-message-named">
+        <input class="surreal-switch__input" type="checkbox" id="surreal-message-named" aria-label="留名，关闭则匿名">
+        <span class="surreal-switch__track" aria-hidden="true">
+          <span class="surreal-switch__thumb"></span>
+        </span>
+        <span class="surreal-switch__text" data-switch-label>匿名</span>
+      </label>
+    </div>
+
+    <div class="surreal-message-form__field" data-name-field hidden>
+      <label class="surreal-message-form__label" for="surreal-message-name">你的名字</label>
+      <input
+        class="surreal-input"
+        type="text"
+        id="surreal-message-name"
+        name="name"
+        maxlength="20"
+        autocomplete="nickname"
+        placeholder="怎么称呼你？"
+        disabled
+      >
+    </div>
+
+    <div class="surreal-message-form__field">
+      <div class="surreal-message-form__label-row">
+        <label class="surreal-message-form__label" for="surreal-message-content">留言内容</label>
+        <span class="surreal-message-form__counter" data-counter>0 / 500</span>
+      </div>
+      <textarea
+        class="surreal-textarea"
+        id="surreal-message-content"
+        name="content"
+        rows="5"
+        maxlength="500"
+        placeholder="写下你想说的话……"
+        required
+      ></textarea>
+    </div>
+
+    <div class="surreal-message-form__hp" aria-hidden="true">
+      <label for="surreal-message-website">Website</label>
+      <input type="text" id="surreal-message-website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="surreal-message-form__actions">
+      <button class="surreal-message-form__submit" type="submit">发送留言</button>
+      <p class="surreal-message-form__status" id="surreal-message-status" role="status" aria-live="polite"></p>
+    </div>
+
+    <p class="surreal-message-form__privacy">留言公开可见；匿名留言不会展示你的名字。</p>
+  </form>
+
+  <section class="surreal-message-list" aria-live="polite">
+    <div class="surreal-message-list__head">
+      <h2 class="surreal-message-list__title">留言列表</h2>
+      <span class="surreal-message-list__count" data-count>0 条</span>
+    </div>
+
+    <div class="surreal-message-items" id="surreal-message-items"></div>
+    <p class="surreal-message-list__empty" data-empty hidden>还没有留言，来当第一个吧。</p>
+    <p class="surreal-message-list__loading" data-loading>正在读取留言…</p>
+  </section>
+</div>
