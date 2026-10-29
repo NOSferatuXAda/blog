@@ -101,7 +101,11 @@ create policy "visitors can insert messages"
     )
   );
 
-grant select, insert on public.messages to anon;
+-- 列级写权限：前端只能写 name / content / anonymous
+-- 不能伪造 created_at / is_visible / id
+revoke insert, update, delete on public.messages from anon;
+grant select on public.messages to anon;
+grant insert (name, content, anonymous) on public.messages to anon;
 grant usage, select on sequence public.messages_id_seq to anon;
 ```
 

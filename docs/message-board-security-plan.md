@@ -27,7 +27,8 @@
    - 不开放 update / delete 给前端。
 3. **字段约束**
    - content 1–500 字符；name 最多 20 字符；
-   - anonymous = true 时 name 必须为空；anonymous = false 时 name 必须非空。
+   - anonymous = true 时 name 必须为空；anonymous = false 时 name 必须非空；
+   - 采用 **列级 insert 权限**：匿名角色只能写 name / content / anonymous，不能伪造 id、created_at 或 is_visible。
 4. **XSS 防护**
    - 留言渲染全部使用 `textContent`，禁止把用户内容拼进 `innerHTML`；
    - 内容使用 `white-space: pre-wrap` 保留换行，避免富文本注入。
@@ -74,7 +75,11 @@ create policy "visitors can insert messages"
     )
   );
 
-grant select, insert on public.messages to anon;
+-- 列级写权限：前端只能写 name / content / anonymous
+-- 不能伪造 created_at / is_visible / id
+revoke insert, update, delete on public.messages from anon;
+grant select on public.messages to anon;
+grant insert (name, content, anonymous) on public.messages to anon;
 grant usage, select on sequence public.messages_id_seq to anon;
 ```
 
@@ -101,3 +106,18 @@ grant usage, select on sequence public.messages_id_seq to anon;
 7. 防重复：连续点击只提交一次；冷却提示。
 8. 与公告弹窗/波场背景共存：留言页不自动弹公告；背景动画正常；无 JS 报错。
 9. 部署后线上 `/message/`、首页链接、`logs.json` 最新公告（留言板功能日志）检查。
+
+## 六、制作后自检结果（2026-10-29）
+
+- **构建**：`hexo generate` 535 文件无错误；`/message/` 使用 `.html` 页面，确认没有把表单渲染成 `<pre><code>`。
+- **首页**：第三栏标题「留言板」、描述与 `message/` 链接正确。
+- **开关联动**：默认匿名 → 姓名框隐藏且禁用；开启留名 → 显示并启用，标签变为「留名」。
+- **校验**：空内容、留名但缺名字均给出错误提示。
+- **演示模式**：提交留名/匿名留言成功，列表按时间倒序，匿名显示「匿名用户 + ANON」，刷新后 localStorage 数据仍在。
+- **XSS**：提交 `<img src=x onerror=...>`，页面以纯文本显示，`window.__xss` 未被触发。
+- **防重复**：提交后 10 秒冷却生效；蜜罐字段命中时静默假装成功且不写入列表。
+- **配置模式**：用本地 Mock Supabase（跨域 CORS + REST）验证 `configured = true`：GET 渲染 2 条、POST 留名/匿名各新增 1 条，共 4 条，演示提示自动隐藏，无 JS 报错。
+- **共存**：`/message/` 不自动弹出公告；波场背景 Canvas 存在；线上实测留言页 60 FPS；无控制台异常。
+- **线上**：Pages 构建成功；`/message/`、`/js/message-board.js`、首页链接、`logs.json` 最新公告均验证通过。
+- **安全**：前端配置为空（演示模式），正式配置只允许 anon public key；确认前端无 service_role 密钥（仅注释中提醒）；SQL 使用 RLS + 列级 insert 权限（不能伪造 id / created_at / is_visible）。
+- **留档**：制作前已创建 `docs/message-board-security-plan.md`，并推送 git tag `pre-message-board`（指向改造前提交 `d802ed9`）。
