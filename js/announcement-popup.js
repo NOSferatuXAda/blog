@@ -47,8 +47,8 @@
     }
   }
 
-  function isLogsPage() {
-    return /(^|\/)logs(\/|$|\/index\.html$)/.test(window.location.pathname);
+  function isQuietPage() {
+    return /(^|\/)(logs|message)(\/|$|\/index\.html$)/.test(window.location.pathname);
   }
 
   function openModal(item) {
@@ -145,8 +145,8 @@
     if (started) return;
     started = true;
 
-    // 公告页本身不弹，避免遮挡用户正在阅读的时间轴
-    if (isLogsPage()) return;
+    // 公告页与留言页本身不弹，避免遮挡内容/表单
+    if (isQuietPage()) return;
 
     fetchLogs(function (logs) {
       if (!logs || !logs.length) return;
