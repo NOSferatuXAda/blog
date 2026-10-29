@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #8bf1ac;
+    background: #446c59;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3810,6 +3810,104 @@ body {
 }
 .site-brand-container {
   background: rgba(5,5,5,0.9) !important;
+}
+/* ============================================================
+   公告页：倒序时间轴
+   ============================================================ */
+/* ---------- 公告页：倒序时间轴 ---------- */
+.surreal-timeline {
+  position: relative;
+  padding: 12px 0 16px 36px;
+}
+.surreal-timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  bottom: 16px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--surreal-red), rgba(255,29,29,0.18) 68%, transparent);
+}
+.surreal-timeline-item {
+  position: relative;
+  margin: 0 0 30px;
+  padding: 20px 22px;
+  border: 1px solid var(--surreal-line);
+  background: rgba(10,10,10,0.78);
+  box-shadow: 6px 6px 0 -2px #0e0e0e;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.surreal-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -35px;
+  top: 26px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--surreal-red);
+  background: var(--surreal-black);
+  transform: rotate(45deg);
+}
+.surreal-timeline-item:hover {
+  border-color: var(--surreal-red);
+  box-shadow: 0 0 0 1px var(--surreal-red), var(--neon-red), 6px 6px 0 -2px #0e0e0e;
+  transform: translateX(3px);
+}
+.surreal-timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+  font-size: 0.68em;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.surreal-timeline-title {
+  margin: 10px 0 12px;
+  color: var(--surreal-white);
+  font-family: var(--font-display);
+  font-size: 1.2em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.surreal-timeline-body {
+  color: #c9c9c9;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+}
+.surreal-timeline-body p {
+  margin: 0 0 0.8em;
+}
+.surreal-timeline-body p:last-child {
+  margin-bottom: 0;
+}
+.surreal-timeline-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  padding-left: 0;
+  border: 1px dashed var(--surreal-line-light);
+}
+.surreal-timeline-empty::before {
+  display: none;
+}
+@media (max-width: 767px) {
+  .surreal-timeline {
+    padding-left: 26px;
+  }
+  .surreal-timeline::before {
+    left: 8px;
+  }
+  .surreal-timeline-item::before {
+    left: -26px;
+  }
+  .surreal-timeline-item {
+    padding: 16px 16px;
+  }
 }
 @keyframes grainShift {
   0% {
