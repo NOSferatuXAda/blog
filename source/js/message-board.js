@@ -18,6 +18,15 @@
   var LAST_KEY = 'surreal-message-last';
   var COOLDOWN = 10000;
   var configured = !!(CONFIG.supabaseUrl && CONFIG.supabaseAnonKey);
+  var TURNSTILE_SITE_KEY = CONFIG.turnstileSiteKey || '';
+  var edgeFunctionUrl = configured
+    ? String(CONFIG.supabaseUrl).replace(/\/+$/, '') + '/functions/v1/message-guard'
+    : '';
+  var turnstileContainer = root.querySelector('[data-turnstile]');
+  var turnstileField = root.querySelector('[data-turnstile-field]');
+  var turnstileToken = null;
+  var turnstileWidgetId = null;
+  var turnstileLoading = false;
 
   var form = root.querySelector('#surreal-message-form');
   var namedInput = root.querySelector('#surreal-message-named');
@@ -185,10 +194,13 @@
       });
     }
 
-    return request('POST', apiBase(), payload, apiHeaders({
-      Prefer: 'return=representation'
-    })).then(function (rows) {
-      return Array.isArray(rows) && rows.length ? rows[0] : payload;
+    return request('POST', edgeFunctionUrl, {
+      name: payload.name,
+      anonymous: payload.anonymous,
+      content: payload.content,
+      turnstileToken: turnstileToken
+    }, apiHeaders()).then(function (data) {
+      return data && data.message ? data.message : payload;
     });
   }
 
@@ -319,6 +331,68 @@
     return '';
   }
 
+  function loadTurnstileScript() {
+    if (!configured || !TURNSTILE_SITE_KEY || !turnstileContainer) return;
+
+    if (window.turnstile) {
+      mountTurnstile();
+      return;
+    }
+    if (turnstileLoading) return;
+
+    turnstileLoading = true;
+    var script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&hl=zh-cn';
+    script.async = true;
+    script.defer = true;
+    script.onload = function () {
+      turnstileLoading = false;
+      mountTurnstile();
+    };
+    script.onerror = function () {
+      turnstileLoading = false;
+      if (turnstileContainer) {
+        turnstileContainer.textContent = '人机验证加载失败，请刷新页面重试。';
+      }
+    };
+    document.head.appendChild(script);
+  }
+
+  function mountTurnstile() {
+    if (!window.turnstile || !turnstileContainer || turnstileWidgetId !== null) return;
+
+    try {
+      turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: 'dark',
+        language: 'zh-cn',
+        callback: function (token) {
+          turnstileToken = token;
+        },
+        'expired-callback': function () {
+          turnstileToken = null;
+        },
+        'error-callback': function () {
+          turnstileToken = null;
+          setStatus('人机验证失败，请刷新后重试。', 'error');
+        }
+      });
+    } catch (err) {
+      turnstileContainer.textContent = '人机验证加载失败，请刷新页面重试。';
+    }
+  }
+
+  function resetTurnstile() {
+    turnstileToken = null;
+    if (window.turnstile && turnstileWidgetId !== null) {
+      try {
+        window.turnstile.reset(turnstileWidgetId);
+      } catch (err) {
+        /* ignore */
+      }
+    }
+  }
+
   function handleSubmit() {
     if (submitting) return;
 
@@ -338,6 +412,17 @@
       if (!content) contentInput.focus();
       else if (named && !name) nameInput.focus();
       return;
+    }
+
+    if (configured) {
+      if (!TURNSTILE_SITE_KEY) {
+        setStatus('人机验证尚未配置，暂时无法发送留言。', 'error');
+        return;
+      }
+      if (!turnstileToken) {
+        setStatus('请先完成下方的人机验证。', 'error');
+        return;
+      }
     }
 
     var now = Date.now();
@@ -360,10 +445,12 @@
         setStored(LAST_KEY, String(lastSubmit));
         contentInput.value = '';
         updateCounter();
+        resetTurnstile();
         setStatus('留言已发布。', 'success');
         loadMessages();
       })
       .catch(function (err) {
+        resetTurnstile();
         setStatus('发送失败：' + (err && err.message ? err.message : '请稍后再试'), 'error');
       })
       .then(function () {
@@ -389,6 +476,9 @@
   if (!configured) {
     noticeEl.hidden = false;
     noticeEl.textContent = '演示模式：留言只保存在当前浏览器，仅本机可见。配置 Supabase 后，所有访客都能看到并留言（接入步骤见 README「留言板」章节）。';
+    if (turnstileField) turnstileField.hidden = true;
+  } else if (TURNSTILE_SITE_KEY) {
+    loadTurnstileScript();
   }
 
   loadMessages();
