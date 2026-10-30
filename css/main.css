@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #6f13f0;
+    background: #942e7e;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -4503,6 +4503,14 @@ html.announcement-open body {
   .surreal-message-form__submit {
     transition: none;
   }
+}
+/* ---------- 留言板 Turnstile ---------- */
+.surreal-message-form__turnstile {
+  min-height: 66px;
+  margin-top: 8px;
+}
+.surreal-message-form__turnstile iframe {
+  max-width: 100%;
 }
 @keyframes grainShift {
   0% {
