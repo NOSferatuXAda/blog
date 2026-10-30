@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
 
-    <meta name="description" content="2026.10.30      留言板正式开放   留言板已经接入 Supabase，所有访客现在可以共享留言了。  入口：首页第三栏「留言板」→ &#x2F;message&#x2F; 留名或匿名都可以；匿名留言统一显示为「匿名用户」 数据持久化在 Supabase Postgres，通过 RLS 只允许公开读取可见留言、匿名插入 首条欢迎留言已由站主留下 当前内置长度校">
+    <meta name="description" content="2026.10.30      留言板限流与 Turnstile 上线   留言板完成了最后一层安全升级，现在开放留言的同时也有人机验证和频率限制。  接入 Cloudflare Turnstile：发送留言前需要完成一次人机验证 所有写入改由 Supabase Edge Function message-guard 处理 同一 IP 10 分钟内最多 5 条留言，超限会提">
 <meta property="og:type" content="website">
 <meta property="og:title" content="公告">
 <meta property="og:url" content="https://nosferatuxada.github.io/blog/logs/">
 <meta property="og:site_name" content="Creationism">
-<meta property="og:description" content="2026.10.30      留言板正式开放   留言板已经接入 Supabase，所有访客现在可以共享留言了。  入口：首页第三栏「留言板」→ &#x2F;message&#x2F; 留名或匿名都可以；匿名留言统一显示为「匿名用户」 数据持久化在 Supabase Postgres，通过 RLS 只允许公开读取可见留言、匿名插入 首条欢迎留言已由站主留下 当前内置长度校">
+<meta property="og:description" content="2026.10.30      留言板限流与 Turnstile 上线   留言板完成了最后一层安全升级，现在开放留言的同时也有人机验证和频率限制。  接入 Cloudflare Turnstile：发送留言前需要完成一次人机验证 所有写入改由 Supabase Edge Function message-guard 处理 同一 IP 10 分钟内最多 5 条留言，超限会提">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-10-29T04:59:57.619Z">
 <meta property="article:modified_time" content="2026-10-29T04:59:57.619Z">
@@ -212,6 +212,24 @@
       
       <div class="post-body">
           <div class="surreal-timeline">
+<article class="surreal-timeline-item">
+  <div class="surreal-timeline-dot" aria-hidden="true"></div>
+  <div class="surreal-timeline-meta">
+    <time datetime="2026-10-30T03:40:00.000Z">2026.10.30</time>
+  </div>
+  <h3 class="surreal-timeline-title">留言板限流与 Turnstile 上线</h3>
+  <div class="surreal-timeline-body"><p>留言板完成了最后一层安全升级，现在开放留言的同时也有人机验证和频率限制。</p>
+<ul>
+<li>接入 Cloudflare Turnstile：发送留言前需要完成一次人机验证</li>
+<li>所有写入改由 Supabase Edge Function <code>message-guard</code> 处理</li>
+<li>同一 IP 10 分钟内最多 5 条留言，超限会提示稍后再试</li>
+<li>已撤销 anon 直接 insert 权限：绕过函数直接写库会返回 401</li>
+<li>Turnstile Secret 与 service role 仅存在于 Supabase 函数环境，不在前端</li>
+<li>读取方式保持不变；留言页不会弹出公告，背景仍保持 60 FPS</li>
+<li>测试数据已清理，留言板保留首条欢迎留言</li>
+</ul>
+</div>
+</article>
 <article class="surreal-timeline-item">
   <div class="surreal-timeline-dot" aria-hidden="true"></div>
   <div class="surreal-timeline-meta">
