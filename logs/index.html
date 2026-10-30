@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
 
-    <meta name="description" content="2026.10.30      留言板限流与 Turnstile 上线   留言板完成了最后一层安全升级，现在开放留言的同时也有人机验证和频率限制。  接入 Cloudflare Turnstile：发送留言前需要完成一次人机验证 所有写入改由 Supabase Edge Function message-guard 处理 同一 IP 10 分钟内最多 5 条留言，超限会提">
+    <meta name="description" content="2026.10.30      汉字排版与标题字体升级   这一版主要重做了中文的字体与阅读节奏，让黑红 Surreal 风格在中文语境里更有层次。  中文标题改用宋体 &#x2F; 衬线字体栈，英文与数字继续保留 Syne 页面标题、卡片标题与留言板标题增加首字点红 正文切换为更适合中文阅读的黑体栈，增加字距、严格断行与两端对齐 导航菜单中文改为衬线字重，字距拉开 引用块">
 <meta property="og:type" content="website">
 <meta property="og:title" content="公告">
 <meta property="og:url" content="https://nosferatuxada.github.io/blog/logs/">
 <meta property="og:site_name" content="Creationism">
-<meta property="og:description" content="2026.10.30      留言板限流与 Turnstile 上线   留言板完成了最后一层安全升级，现在开放留言的同时也有人机验证和频率限制。  接入 Cloudflare Turnstile：发送留言前需要完成一次人机验证 所有写入改由 Supabase Edge Function message-guard 处理 同一 IP 10 分钟内最多 5 条留言，超限会提">
+<meta property="og:description" content="2026.10.30      汉字排版与标题字体升级   这一版主要重做了中文的字体与阅读节奏，让黑红 Surreal 风格在中文语境里更有层次。  中文标题改用宋体 &#x2F; 衬线字体栈，英文与数字继续保留 Syne 页面标题、卡片标题与留言板标题增加首字点红 正文切换为更适合中文阅读的黑体栈，增加字距、严格断行与两端对齐 导航菜单中文改为衬线字重，字距拉开 引用块">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-10-29T04:59:57.619Z">
 <meta property="article:modified_time" content="2026-10-29T04:59:57.619Z">
@@ -212,6 +212,24 @@
       
       <div class="post-body">
           <div class="surreal-timeline">
+<article class="surreal-timeline-item">
+  <div class="surreal-timeline-dot" aria-hidden="true"></div>
+  <div class="surreal-timeline-meta">
+    <time datetime="2026-10-30T05:00:00.000Z">2026.10.30</time>
+  </div>
+  <h3 class="surreal-timeline-title">汉字排版与标题字体升级</h3>
+  <div class="surreal-timeline-body"><p>这一版主要重做了中文的字体与阅读节奏，让黑红 Surreal 风格在中文语境里更有层次。</p>
+<ul>
+<li>中文标题改用宋体 &#x2F; 衬线字体栈，英文与数字继续保留 Syne</li>
+<li>页面标题、卡片标题与留言板标题增加首字点红</li>
+<li>正文切换为更适合中文阅读的黑体栈，增加字距、严格断行与两端对齐</li>
+<li>导航菜单中文改为衬线字重，字距拉开</li>
+<li>引用块使用衬线标题字体，强调文本使用红色非斜体</li>
+<li>不额外下载中文字体文件，使用系统字体栈，保持加载性能</li>
+<li>原有快捷导航、背景动画与公告&#x2F;留言功能不受影响</li>
+</ul>
+</div>
+</article>
 <article class="surreal-timeline-item">
   <div class="surreal-timeline-dot" aria-hidden="true"></div>
   <div class="surreal-timeline-meta">

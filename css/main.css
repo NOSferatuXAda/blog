@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ff1c33;
+    background: #ff38ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -4511,6 +4511,96 @@ html.announcement-open body {
 }
 .surreal-message-form__turnstile iframe {
   max-width: 100%;
+}
+/* ============================================================
+   汉字排版：标题衬线 / 正文呼吸感
+   ============================================================ */
+:root {
+  --font-cjk-display: "Songti SC", "STSong", "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+  --font-display-cjk: "Syne", var(--font-cjk-display);
+  --font-body: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+/* 中文标题：Latin 保留 Syne，汉字落到宋体/衬线 */
+.post-title,
+.surreal-panel-title,
+.surreal-cats-name,
+.surreal-message__title,
+.surreal-message-list__title,
+.surreal-timeline-title,
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  font-family: var(--font-display-cjk);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+.surreal-panel-title {
+  letter-spacing: 0.22em;
+}
+.main-menu .menu-item a {
+  font-family: var(--font-display-cjk);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+}
+/* 首字点红：链接卡片与页面标题 */
+.surreal-panel-link .surreal-panel-title::first-letter,
+.post-title::first-letter,
+.surreal-message__title::first-letter {
+  color: var(--surreal-red);
+}
+/* 正文中文的阅读节奏 */
+.post-body,
+.surreal-message__intro,
+.surreal-message-card__body,
+.surreal-timeline-body,
+.surreal-panel-text {
+  letter-spacing: 0.035em;
+}
+.post-body p {
+  text-align: justify;
+  text-justify: inter-ideograph;
+  line-break: strict;
+  text-spacing-trim: trim-start;
+}
+.post-body blockquote {
+  font-family: var(--font-display-cjk);
+  font-size: 1.02em;
+  line-height: 2;
+}
+.post-body em {
+  font-style: normal;
+  color: var(--surreal-red);
+  letter-spacing: 0.06em;
+}
+@media (max-width: 767px) {
+  .post-title {
+    letter-spacing: 0.12em;
+  }
+  .surreal-panel-title {
+    letter-spacing: 0.18em;
+  }
+}
+/* 主题默认会用 Lato + 系统中文字体；显式切到中文阅读栈 */
+body,
+.post-body,
+.surreal-message__intro,
+.surreal-message-card__body,
+.surreal-timeline-body,
+.surreal-panel-text {
+  font-family: var(--font-cjk-body);
+}
+.surreal-message__intro,
+.surreal-message-card__body,
+.surreal-timeline-body,
+.surreal-panel-text {
+  line-break: strict;
+}
+.surreal-timeline-body p {
+  text-align: justify;
+  text-justify: inter-ideograph;
 }
 @keyframes grainShift {
   0% {
