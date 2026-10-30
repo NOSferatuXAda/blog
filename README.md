@@ -123,7 +123,36 @@ window.__SURREAL_MESSAGE__ = {
 
 5. 重新 `npx hexo clean && npx hexo deploy` 即可让所有访客共享留言。
 
-> **安全边界**：前端只能使用 anon public key（配合 RLS 才是安全的）；`service_role` key 可以绕过 RLS，绝不能出现在任何前端文件或 GitHub 仓库中。
+### 一键写入配置并部署（推荐）
+
+先在 Supabase SQL Editor 执行 [`tools/supabase-message-board.sql`](tools/supabase-message-board.sql)，然后在本机项目根目录运行：
+
+```powershell
+powershell -File tools/set-message-board.ps1 `
+  -SupabaseUrl "https://你的项目.supabase.co" `
+  -AnonKey "你的 anon public key"
+```
+
+脚本会：
+
+1. 校验 URL 格式，并解码 JWT 角色；发现 `service_role` 会直接拒绝写入；
+2. 把 URL / anon public key 写入 `source/_data/body-end.njk`（不会回显 key）；
+3. 请求一次 Supabase REST，确认 `messages` 表可读；
+4. 执行 `hexo clean/generate/deploy`。
+
+如果不想让 key 出现在命令历史，可以先保存到本地文件（已加入 `.gitignore`）：
+
+```powershell
+Set-Content -Path .supabase-anon.txt -Value "你的 anon public key" -Encoding utf8
+powershell -File tools/set-message-board.ps1 `
+  -SupabaseUrl "https://你的项目.supabase.co" `
+  -AnonKeyFile ".supabase-anon.txt"
+Remove-Item .supabase-anon.txt
+```
+
+> VPN/代理未开启时，可加 `-SkipDeploy` 只写入配置，之后手动运行 `tools/deploy.ps1`。
+
+> **安全边界**：前端只能使用 anon public key（配合 RLS 才是安全的）；`service_role` key 可以绕过 RLS，绝不能出现在任何前端文件或 GitHub 仓库中。不要把 `service_role` key 发到聊天里。
 >
 > **反垃圾建议**：当前内置长度校验、隐藏蜜罐、10 秒本地冷却；正式开放后可再加 Cloudflare Turnstile + Supabase Edge Function，或通过 `is_visible` 在 Table Editor 中隐藏留言。
 >

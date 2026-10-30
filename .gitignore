@@ -13,3 +13,6 @@ _multiconfig.yml
 .v-*.png
 .bili-*.jpg
 .fluid-*.png
+# 本地 Supabase 密钥文件（不要提交）
+.supabase-anon.txt
+.anon-key.txt
