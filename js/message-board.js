@@ -271,6 +271,7 @@
 
   function loadMessages() {
     loadingEl.hidden = false;
+    countEl.textContent = '读取中…';
 
     fetchMessages()
       .then(function (messages) {
@@ -278,6 +279,7 @@
       })
       .catch(function (err) {
         loadingEl.hidden = true;
+        countEl.textContent = '—';
         setStatus('留言列表读取失败：' + (err && err.message ? err.message : '未知错误'), 'error');
       });
   }
