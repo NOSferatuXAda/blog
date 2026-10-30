@@ -131,3 +131,13 @@ grant usage, select on sequence public.messages_id_seq to anon;
 - **线上状态**：配置生效后演示提示隐藏；`/logs.json` 最新为「留言板正式开放」；留言页不弹公告；波场背景 60 FPS；无 JS 报错。
 - **性能**：增加 Supabase `preconnect` / `dns-prefetch`，并在列表加载期间显示「读取中…」；首次冷连接仍可能偏慢，之后请求通常 <1s。
 - **尚未实现**：Turnstile + Edge Function 限流。当前为内容长度校验、蜜罐、10 秒本地冷却（客户端可绕过），正式推广前需补服务端限流/人机校验。
+
+## 八、Turnstile + Edge Function 限流上线（2026-10-30）
+
+- **Edge Function**：`message-guard` 已通过 Supabase CLI 部署并处于 ACTIVE；`TURNSTILE_SECRET_KEY` 已存在于项目 Secrets 中。
+- **限流 RPC**：创建 `message_rate_limits` 表与 `check_message_rate` 函数；实测同一 IP 哈希连续 6 次请求，前 5 次 `true`、第 6 次 `false`；测试行已清理。
+- **Turnstile**：在非 headless Edge 中完成真实验证并成功写入一条匿名留言；headless 环境会被 Turnstile 风控拦截，属于测试环境限制而非代码问题。
+- **权限收紧**：已执行 lockdown SQL：`anon` 直接 insert 返回 401 `permission denied`；Edge Function 使用 service role 写入仍正常（锁定后实测再次成功写入）。
+- **清理**：测试留言与限流测试行已删除，线上仅保留首条欢迎留言。
+- **前端**：留言页动态加载 Turnstile（公开 Site Key），提交改为调用 Edge Function；服务端返回 429 时显示“操作太频繁，请 10 分钟后再试”。
+- **仍未解决**：Turnstile Secret 与 service role 的安全性依赖 Supabase Secrets 管理；如需要更强的反滥用，可再加邮箱验证/人工审核。

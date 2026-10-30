@@ -152,9 +152,30 @@ Remove-Item .supabase-anon.txt
 
 > VPN/代理未开启时，可加 `-SkipDeploy` 只写入配置，之后手动运行 `tools/deploy.ps1`。
 
-> **安全边界**：前端只能使用 anon public key（配合 RLS 才是安全的）；`service_role` key 可以绕过 RLS，绝不能出现在任何前端文件或 GitHub 仓库中。不要把 `service_role` key 发到聊天里。
+### 安全层（已启用）
+
+留言板的写入已从「前端直接 REST」切换为 Edge Function 代理，并启用 Turnstile 与 IP 限流：
+
+```powershell
+# 1) 建限流表 + RPC（在切换前执行）
+npx supabase db query --linked --project-ref <项目ref> -f tools/supabase-message-guard-schema.sql
+
+# 2) 部署 Edge Function（Turnstile 校验 + IP 限流 + service role 写入）
+npx supabase functions deploy message-guard --project-ref <项目ref>
+
+# 3) 关闭 anon 直接 insert（函数部署、前端上线后执行）
+npx supabase db query --linked --project-ref <项目ref> -f tools/supabase-message-guard-lockdown.sql
+```
+
+- **Turnstile**：前端使用公开 Site Key；Secret Key 只存在于 Supabase 函数环境变量 `TURNSTILE_SECRET_KEY`。
+- **限流**：同一 IP 10 分钟内最多 5 条，由 `check_message_rate` RPC 持久化计数。
+- **权限**：`anon` 直接 insert 已被撤销（返回 401），所有写入必须经过 Edge Function；`service_role` 只存在于函数运行环境，不在前端。
+- **前端配置**：`source/_data/body-end.njk` 的 `turnstileSiteKey`；留言页会动态加载 Turnstile 并按需渲染。
+- Edge Function 源码：[supabase/functions/message-guard/index.ts](supabase/functions/message-guard/index.ts)。
+
+> **安全边界**：前端只能使用 anon public key（配合 RLS 才是安全的）；`service_role` key 可以绕过 RLS，绝不能出现在任何前端文件或 GitHub 仓库中。不要把 `service_role` / `TURNSTILE_SECRET_KEY` 发到聊天里。
 >
-> **反垃圾建议**：当前内置长度校验、隐藏蜜罐、10 秒本地冷却；正式开放后可再加 Cloudflare Turnstile + Supabase Edge Function，或通过 `is_visible` 在 Table Editor 中隐藏留言。
+> **内容管理**：不当留言可在 Supabase Table Editor 中把 `is_visible` 改为 `false` 隐藏。
 >
 > 详细的安全评估与留档见 [docs/message-board-security-plan.md](docs/message-board-security-plan.md)。
 
