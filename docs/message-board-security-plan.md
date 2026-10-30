@@ -121,3 +121,13 @@ grant usage, select on sequence public.messages_id_seq to anon;
 - **线上**：Pages 构建成功；`/message/`、`/js/message-board.js`、首页链接、`logs.json` 最新公告均验证通过。
 - **安全**：前端配置为空（演示模式），正式配置只允许 anon public key；确认前端无 service_role 密钥（仅注释中提醒）；SQL 使用 RLS + 列级 insert 权限（不能伪造 id / created_at / is_visible）。
 - **留档**：制作前已创建 `docs/message-board-security-plan.md`，并推送 git tag `pre-message-board`（指向改造前提交 `d802ed9`）。
+
+## 七、真实 Supabase 接入验证（2026-10-30）
+
+- **Project URL**：由 anon JWT 中的 `ref` 推导为 `https://pcybqzzepcmfrrmqynwi.supabase.co`（Supabase 控制台里的 `localhost:3000` 是 Auth 的 Site URL，不是 API 地址）。
+- **SQL 已执行**：`GET /rest/v1/messages` 返回 200，JWT payload `role=anon`，不是 `service_role`。
+- **真实写入**：通过线上同款表单写入首条欢迎留言（`nosferatu`），REST 可读。
+- **跨访客验证**：两个完全独立的浏览器 profile 打开线上 `/message/`，都读取到同一条留言，确认数据共享而非本机 localStorage。
+- **线上状态**：配置生效后演示提示隐藏；`/logs.json` 最新为「留言板正式开放」；留言页不弹公告；波场背景 60 FPS；无 JS 报错。
+- **性能**：增加 Supabase `preconnect` / `dns-prefetch`，并在列表加载期间显示「读取中…」；首次冷连接仍可能偏慢，之后请求通常 <1s。
+- **尚未实现**：Turnstile + Edge Function 限流。当前为内容长度校验、蜜罐、10 秒本地冷却（客户端可绕过），正式推广前需补服务端限流/人机校验。
