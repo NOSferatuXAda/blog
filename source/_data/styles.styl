@@ -2519,15 +2519,16 @@ a.surreal-cats-root:hover .surreal-cats-name {
 
 /* ============================================================
    文章详情：作品集内的阅读版式
+   仅作用于带 .surreal-essay-marker 的文章页
    ============================================================ */
 
-.post-body {
+body:has(.surreal-essay-marker) .post-body {
   max-width: 780px;
   font-size: 1.04em;
   line-height: 2.1;
 }
 
-.post-header .post-meta-container {
+body:has(.surreal-essay-marker) .post-header .post-meta-container {
   color: var(--surreal-grey);
   font-family: var(--font-mono);
   font-size: 0.68em;
@@ -2535,24 +2536,24 @@ a.surreal-cats-root:hover .surreal-cats-name {
   text-transform: uppercase;
 }
 
-.post-body h2 {
+body:has(.surreal-essay-marker) .post-body h2 {
   margin-top: 2.6em;
   font-family: var(--font-display-cjk);
   font-size: 1.32em;
   letter-spacing: 0.3em;
 }
 
-.post-body h2:first-of-type {
+body:has(.surreal-essay-marker) .post-body h2:first-of-type {
   margin-top: 0.8em;
 }
 
-.post-body > p:first-of-type {
+body:has(.surreal-essay-marker) .post-body > p:first-of-type {
   color: #ececec;
   font-size: 1.06em;
 }
 
 /* 保留浮动首字，但让浮动盒高度与正文行高一致，避免跨行错位 */
-.post-body > p:first-of-type::first-letter {
+body:has(.surreal-essay-marker) .post-body > p:first-of-type::first-letter {
   float: left;
   margin: 0.02em 0.12em 0 0;
   color: var(--surreal-red);
@@ -2562,11 +2563,11 @@ a.surreal-cats-root:hover .surreal-cats-name {
   line-height: 0.95;
 }
 
-.post-body p {
+body:has(.surreal-essay-marker) .post-body p {
   margin-bottom: 1.25em;
 }
 
-.post-body blockquote {
+body:has(.surreal-essay-marker) .post-body blockquote {
   margin: 30px 0;
   padding: 18px 26px;
   border-left: 3px solid var(--surreal-red);
@@ -2577,7 +2578,7 @@ a.surreal-cats-root:hover .surreal-cats-name {
   line-height: 1.9;
 }
 
-.post-body blockquote p {
+body:has(.surreal-essay-marker) .post-body blockquote p {
   margin: 0;
 }
 
@@ -2612,7 +2613,7 @@ a.surreal-cats-root:hover .surreal-cats-name {
     font-size: 1.35em;
   }
 
-  .post-body > p:first-of-type::first-letter {
+  body:has(.surreal-essay-marker) .post-body > p:first-of-type::first-letter {
     font-size: 2em;
     margin-top: 0.04em;
   }
@@ -2638,7 +2639,7 @@ a.surreal-cats-root:hover::after {
 }
 
 /* 文章章节的 § 序号，避免「一」看起来像一条横线 */
-.post-body h2::before {
+body:has(.surreal-essay-marker) .post-body h2::before {
   content: "§";
   margin-right: 12px;
   color: var(--surreal-red);

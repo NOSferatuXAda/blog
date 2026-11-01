@@ -8,6 +8,8 @@ description: 一门没有水的课，和一个决定自己解渴的人。
 comments: false
 ---
 
+<span class="surreal-essay-marker" hidden></span>
+
 ## 一
 
 有人跟我说，这是一门水课。
