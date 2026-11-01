@@ -168,6 +168,13 @@
     var target = event.target;
     if (!target || !target.closest) return;
 
+    // 点击公告正文里的文章链接时，视为已读，避免文章页再次弹同一条公告
+    var link = target.closest('.surreal-announcement__body a, .surreal-announcement__more');
+    if (link) {
+      if (currentVersion) storageSet(STORAGE_KEY, currentVersion);
+      return;
+    }
+
     if (target.closest('[data-dismiss]')) {
       event.preventDefault();
       closeModal(true);
