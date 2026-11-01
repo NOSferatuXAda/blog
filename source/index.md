@@ -9,7 +9,7 @@ comments: false
   <section class="surreal-panel surreal-panel-link">
     <span class="surreal-panel-mark">unknown</span>
     <h2 class="surreal-panel-title"><a class="surreal-panel-anchor" href="archives/">作品集</a></h2>
-    <p class="surreal-panel-text">作品集</p>
+    <p class="surreal-panel-text">模拟人生</p>
   </section>
   <section class="surreal-panel">
     <span class="surreal-panel-mark">unknown</span>
