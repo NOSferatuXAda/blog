@@ -2551,6 +2551,17 @@ a.surreal-cats-root:hover .surreal-cats-name {
   font-size: 1.06em;
 }
 
+/* 保留浮动首字，但让浮动盒高度与正文行高一致，避免跨行错位 */
+.post-body > p:first-of-type::first-letter {
+  float: left;
+  margin: 0.02em 0.12em 0 0;
+  color: var(--surreal-red);
+  font-family: var(--font-cjk-display);
+  font-size: 2.2em;
+  font-weight: 700;
+  line-height: 0.95;
+}
+
 .post-body p {
   margin-bottom: 1.25em;
 }
@@ -2599,6 +2610,11 @@ a.surreal-cats-root:hover .surreal-cats-name {
 
   .surreal-work__title {
     font-size: 1.35em;
+  }
+
+  .post-body > p:first-of-type::first-letter {
+    font-size: 2em;
+    margin-top: 0.04em;
   }
 }
 
