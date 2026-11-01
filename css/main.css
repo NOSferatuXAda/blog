@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ff38ff;
+    background: #50c2af;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -4601,6 +4601,236 @@ body,
 .surreal-timeline-body p {
   text-align: justify;
   text-justify: inter-ideograph;
+}
+/* ============================================================
+   作品集：与「分类 → 全部」共用同一个列表
+   ============================================================ */
+.surreal-portfolio {
+  padding: 2px 0 12px;
+}
+.surreal-portfolio__intro {
+  margin: 0 0 26px;
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.16em;
+}
+.surreal-portfolio__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.surreal-work {
+  position: relative;
+  display: grid;
+  grid-template-columns: 58px 1fr 34px;
+  gap: 18px;
+  align-items: start;
+  padding: 26px 26px 24px;
+  border: 1px solid var(--surreal-line);
+  background: rgba(10,10,10,0.74);
+  box-shadow: 8px 8px 0 -2px #0e0e0e;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease, background-color 0.28s ease;
+}
+.surreal-work::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 3px;
+  height: 54px;
+  background: var(--surreal-red);
+}
+.surreal-work:hover {
+  border-color: var(--surreal-red);
+  background: rgba(18,10,10,0.8);
+  transform: translateX(4px);
+  box-shadow: 0 0 0 1px rgba(255,29,29,0.2), 8px 8px 0 -2px #0e0e0e;
+}
+.surreal-work__index {
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  letter-spacing: 0.18em;
+  line-height: 1.6;
+}
+.surreal-work__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.surreal-work__meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.64em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.surreal-work__category {
+  padding-left: 14px;
+  border-left: 1px solid var(--surreal-line-light);
+  color: var(--surreal-red);
+}
+.surreal-work__title {
+  display: block;
+  margin: 12px 0 10px;
+  color: var(--surreal-white);
+  font-family: var(--font-display-cjk);
+  font-size: clamp(1.45em, 2.4vw, 1.9em);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+}
+.surreal-work:hover .surreal-work__title {
+  color: var(--surreal-red);
+}
+.surreal-work__excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #cfcfcf;
+  font-size: 0.9em;
+  line-height: 1.85;
+  letter-spacing: 0.035em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.surreal-work__arrow {
+  align-self: center;
+  color: var(--surreal-grey-dark);
+  font-family: var(--font-mono);
+  font-size: 1.2em;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.surreal-work:hover .surreal-work__arrow {
+  color: var(--surreal-red);
+  transform: translateX(4px);
+}
+/* 分类「全部」与作品集共用同一个页面 */
+a.surreal-cats-root {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+a.surreal-cats-root:hover {
+  border-color: var(--surreal-red);
+  background: linear-gradient(90deg, rgba(255,29,29,0.1), rgba(255,29,29,0.02) 70%);
+}
+a.surreal-cats-root:hover .surreal-cats-name {
+  color: var(--surreal-red);
+}
+/* ============================================================
+   文章详情：作品集内的阅读版式
+   ============================================================ */
+.post-body {
+  max-width: 780px;
+  font-size: 1.04em;
+  line-height: 2.1;
+}
+.post-header .post-meta-container {
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.68em;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.post-body h2 {
+  margin-top: 2.6em;
+  font-family: var(--font-display-cjk);
+  font-size: 1.32em;
+  letter-spacing: 0.3em;
+}
+.post-body h2:first-of-type {
+  margin-top: 0.8em;
+}
+.post-body > p:first-of-type {
+  color: #ececec;
+  font-size: 1.06em;
+}
+.post-body > p:first-of-type::first-letter {
+  float: left;
+  margin: 8px 10px 0 0;
+  color: var(--surreal-red);
+  font-family: var(--font-cjk-display);
+  font-size: 3.6em;
+  line-height: 0.78;
+}
+.post-body p {
+  margin-bottom: 1.25em;
+}
+.post-body blockquote {
+  margin: 30px 0;
+  padding: 18px 26px;
+  border-left: 3px solid var(--surreal-red);
+  background: linear-gradient(135deg, rgba(255,29,29,0.055), transparent 72%);
+  color: var(--surreal-white);
+  font-family: var(--font-display-cjk);
+  font-size: 1.12em;
+  line-height: 1.9;
+}
+.post-body blockquote p {
+  margin: 0;
+}
+.surreal-post-back {
+  margin: 44px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  letter-spacing: 0.18em;
+}
+.surreal-post-back a {
+  color: var(--surreal-red);
+  text-decoration: none;
+}
+.surreal-post-back a:hover {
+  text-shadow: var(--neon-red);
+}
+@media (max-width: 767px) {
+  .surreal-work {
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    padding: 20px 18px 20px;
+  }
+  .surreal-work__arrow {
+    display: none;
+  }
+  .surreal-work__title {
+    font-size: 1.35em;
+  }
+  .post-body > p:first-of-type::first-letter {
+    font-size: 3em;
+  }
+}
+/* 作品集卡片标题的首字呼应 */
+.surreal-work__title::first-letter {
+  color: var(--surreal-red);
+}
+/* 「分类 → 全部」与作品集共用的入口提示 */
+a.surreal-cats-root::after {
+  content: "→";
+  margin-left: auto;
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+  font-size: 1em;
+  transition: transform 0.25s ease;
+}
+a.surreal-cats-root:hover::after {
+  transform: translateX(4px);
+}
+/* 文章章节的 § 序号，避免「一」看起来像一条横线 */
+.post-body h2::before {
+  content: "§";
+  margin-right: 12px;
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+  font-size: 0.62em;
+  letter-spacing: 0;
+  vertical-align: 0.12em;
+  opacity: 0.9;
 }
 @keyframes grainShift {
   0% {
