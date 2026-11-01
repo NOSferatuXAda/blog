@@ -70,7 +70,8 @@ function loadLogs() {
         version: version,
         title: title,
         date: date,
-        rendered: rendered
+        rendered: rendered,
+        popup: data.popup !== false
       };
     })
     .filter(item => !Number.isNaN(item.date.getTime()))
@@ -82,8 +83,9 @@ hexo.extend.filter.register('before_generate', function () {
 }, 9);
 
 // 输出静态 JSON：供“最新公告自动弹窗”等前端功能读取
+// popup: false 的日志仍显示在公告页，但不参与自动弹窗
 hexo.extend.generator.register('logs-json', function () {
-  const logs = cachedLogs || loadLogs();
+  const logs = (cachedLogs || loadLogs()).filter(item => item.popup !== false);
   const root = hexo.config.root || '/';
   const payload = logs.map(item => ({
     version: item.version,
