@@ -22,4 +22,5 @@ comments: false
     <h2 class="surreal-panel-title"><a class="surreal-panel-anchor" href="message/">留言板</a></h2>
     <p class="surreal-panel-text">留下你的痕迹，或匿名说点什么。</p>
   </section>
+  <p class="surreal-home-recent">最近更新 · <a href="posts/pi5-dsh-openclaw-deploy-log/">树莓派 5：dsh + OpenClaw 部署工作日志</a></p>
 </div>
