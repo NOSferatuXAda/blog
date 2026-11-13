@@ -1,6 +1,6 @@
 ---
 title: 首页
-description: nosferatu 的个人工作台：写日常里的荒诞，也记录把 dsh 与 OpenClaw 搬到树莓派 5 上的过程。
+description: nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。
 layout: page
 header: false
 comments: false
