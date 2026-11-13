@@ -20,17 +20,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
 
-    <meta name="description" content="2026.11.01      文章排版与公告链接修复   修复了两处问题，不单独发布公告，仅在此记录：  文章首字下沉在部分字体&#x2F;屏幕下会出现错位，已保留浮动首字并改为与正文行高一致的单行尺寸，保证首字与第一行对齐； 公告中的文章链接改为站点根路径，公告弹窗与公告页两个入口都能正确跳转到文章； 从公告弹窗点击文章链接后视为已读，文章页不会再重复弹出同一条公告；">
+    <meta name="description" content="最新的文章与站点公告。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="公告">
 <meta property="og:url" content="https://nosferatuxada.github.io/blog/logs/">
 <meta property="og:site_name" content="Creationism">
-<meta property="og:description" content="2026.11.01      文章排版与公告链接修复   修复了两处问题，不单独发布公告，仅在此记录：  文章首字下沉在部分字体&#x2F;屏幕下会出现错位，已保留浮动首字并改为与正文行高一致的单行尺寸，保证首字与第一行对齐； 公告中的文章链接改为站点根路径，公告弹窗与公告页两个入口都能正确跳转到文章； 从公告弹窗点击文章链接后视为已读，文章页不会再重复弹出同一条公告；">
+<meta property="og:description" content="最新的文章与站点公告。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-11-13T12:23:56.120Z">
-<meta property="article:modified_time" content="2026-11-13T12:23:56.120Z">
+<meta property="article:published_time" content="2026-11-13T16:32:35.319Z">
+<meta property="article:modified_time" content="2026-11-13T16:32:35.319Z">
 <meta property="article:author" content="nosferatu">
-<meta property="article:tag" content="unknown">
+<meta property="article:tag" content="nosferatu, Creationism, 科研日常, 随笔, 实验记录">
 <meta name="twitter:card" content="summary">
 
 
@@ -76,6 +76,16 @@
 <link rel="preload" href="/blog/fonts/jetbrains-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="/blog/fonts/jetbrains-mono-latin-600.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <meta name="color-scheme" content="dark">
+<style id="surreal-heading-spacing-fix">
+  /* 标题红线与描述/元信息之间的保底间距，避免旧缓存样式造成压字 */
+  .posts-expand .post-header {
+    padding-bottom: 24px !important;
+  }
+
+  .posts-expand .post-header .post-meta-container {
+    margin-top: 20px !important;
+  }
+</style>
 <noscript>
   <style>
     .use-motion .column,
@@ -113,7 +123,7 @@
       <p class="site-title">Creationism</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">unknown</p>
+      <p class="site-subtitle" itemprop="description">一个泡在 H2O 里的写作者</p>
   </div>
 
   <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
@@ -157,7 +167,7 @@
     <img class="site-author-image" itemprop="image" alt="nosferatu"
       src="/blog/images/avatar-surreal.gif">
   <p class="site-author-name" itemprop="name">nosferatu</p>
-  <div class="site-description" itemprop="description">unknown</div>
+  <div class="site-description" itemprop="description">nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。</div>
 </div>
   <div class="links-of-author animated">
       <span class="links-of-author-item">
@@ -201,6 +211,7 @@
 </h1>
 
 <div class="post-meta-container">
+    <div class="post-description">最新的文章与站点公告。</div>
 </div>
 
 </header>
@@ -210,22 +221,6 @@
       
       <div class="post-body">
           <div class="surreal-timeline">
-<article class="surreal-timeline-item">
-  <div class="surreal-timeline-dot" aria-hidden="true"></div>
-  <div class="surreal-timeline-meta">
-    <time datetime="2026-11-01T11:26:00.000Z">2026.11.01</time>
-  </div>
-  <h3 class="surreal-timeline-title">文章排版与公告链接修复</h3>
-  <div class="surreal-timeline-body"><p>修复了两处问题，不单独发布公告，仅在此记录：</p>
-<ul>
-<li>文章首字下沉在部分字体&#x2F;屏幕下会出现错位，已保留浮动首字并改为与正文行高一致的单行尺寸，保证首字与第一行对齐；</li>
-<li>公告中的文章链接改为站点根路径，公告弹窗与公告页两个入口都能正确跳转到文章；</li>
-<li>从公告弹窗点击文章链接后视为已读，文章页不会再重复弹出同一条公告；</li>
-<li>文章专属排版样式收窄到文章页，避免影响首页、作品集和分类页的卡片标题；</li>
-<li>文章页标记元素改为块级隐藏元素，避免被 Markdown 包成空段落，浮动首字重新作用于正文首段。</li>
-</ul>
-</div>
-</article>
 <article class="surreal-timeline-item">
   <div class="surreal-timeline-dot" aria-hidden="true"></div>
   <div class="surreal-timeline-meta">
@@ -388,6 +383,8 @@
 </article>
 </div>
 
+<p class="surreal-logs-more"><a href="../changelog/">站务与修复记录 →</a></p>
+
       </div>
       
       
@@ -475,6 +472,8 @@
   };
 </script>
 <script src="/blog/js/message-board.js" defer></script>
+<script src="/blog/js/portfolio-filter.js" defer></script>
+<script src="/blog/js/article-toc.js" defer></script>
 
 
 </body>

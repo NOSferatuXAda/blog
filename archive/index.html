@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
 
-    <meta name="description" content="unknown">
+    <meta name="description" content="nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Creationism">
 <meta property="og:url" content="https://nosferatuxada.github.io/blog/archive/">
 <meta property="og:site_name" content="Creationism">
-<meta property="og:description" content="unknown">
+<meta property="og:description" content="nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="nosferatu">
-<meta property="article:tag" content="unknown">
+<meta property="article:tag" content="nosferatu, Creationism, 科研日常, 随笔, 实验记录">
 <meta name="twitter:card" content="summary">
 
 
@@ -73,6 +73,16 @@
 <link rel="preload" href="/blog/fonts/jetbrains-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="/blog/fonts/jetbrains-mono-latin-600.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <meta name="color-scheme" content="dark">
+<style id="surreal-heading-spacing-fix">
+  /* 标题红线与描述/元信息之间的保底间距，避免旧缓存样式造成压字 */
+  .posts-expand .post-header {
+    padding-bottom: 24px !important;
+  }
+
+  .posts-expand .post-header .post-meta-container {
+    margin-top: 20px !important;
+  }
+</style>
 <noscript>
   <style>
     .use-motion .column,
@@ -110,7 +120,7 @@
       <h1 class="site-title">Creationism</h1>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">unknown</p>
+      <p class="site-subtitle" itemprop="description">一个泡在 H2O 里的写作者</p>
   </div>
 
   <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
@@ -154,7 +164,7 @@
     <img class="site-author-image" itemprop="image" alt="nosferatu"
       src="/blog/images/avatar-surreal.gif">
   <p class="site-author-name" itemprop="name">nosferatu</p>
-  <div class="site-description" itemprop="description">unknown</div>
+  <div class="site-description" itemprop="description">nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。</div>
 </div>
   <div class="links-of-author animated">
       <span class="links-of-author-item">
@@ -327,6 +337,8 @@
   };
 </script>
 <script src="/blog/js/message-board.js" defer></script>
+<script src="/blog/js/portfolio-filter.js" defer></script>
+<script src="/blog/js/article-toc.js" defer></script>
 
 
 </body>

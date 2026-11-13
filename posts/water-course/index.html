@@ -75,6 +75,16 @@
 <link rel="preload" href="/blog/fonts/jetbrains-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="/blog/fonts/jetbrains-mono-latin-600.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <meta name="color-scheme" content="dark">
+<style id="surreal-heading-spacing-fix">
+  /* 标题红线与描述/元信息之间的保底间距，避免旧缓存样式造成压字 */
+  .posts-expand .post-header {
+    padding-bottom: 24px !important;
+  }
+
+  .posts-expand .post-header .post-meta-container {
+    margin-top: 20px !important;
+  }
+</style>
 <noscript>
   <style>
     .use-motion .column,
@@ -112,7 +122,7 @@
       <p class="site-title">Creationism</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">unknown</p>
+      <p class="site-subtitle" itemprop="description">一个泡在 H2O 里的写作者</p>
   </div>
 
   <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
@@ -156,7 +166,7 @@
     <img class="site-author-image" itemprop="image" alt="nosferatu"
       src="/blog/images/avatar-surreal.gif">
   <p class="site-author-name" itemprop="name">nosferatu</p>
-  <div class="site-description" itemprop="description">unknown</div>
+  <div class="site-description" itemprop="description">nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。</div>
 </div>
   <div class="links-of-author animated">
       <span class="links-of-author-item">
@@ -208,7 +218,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Creationism">
-      <meta itemprop="description" content="unknown">
+      <meta itemprop="description" content="nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -424,6 +434,8 @@
   };
 </script>
 <script src="/blog/js/message-board.js" defer></script>
+<script src="/blog/js/portfolio-filter.js" defer></script>
+<script src="/blog/js/article-toc.js" defer></script>
 
 
 </body>

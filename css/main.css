@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffff9e;
+    background: #63c357;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3147,6 +3147,21 @@ figure.highlight .copy-btn:hover {
   letter-spacing: 0.24em;
   text-transform: uppercase;
 }
+.surreal-home-recent {
+  margin: 30px 0 0;
+  color: var(--surreal-grey);
+  font-size: 0.8em;
+  letter-spacing: 0.2em;
+  text-align: right;
+}
+.surreal-home-recent a {
+  color: var(--surreal-red);
+  text-decoration: none;
+  border-bottom: 1px solid var(--surreal-line-light);
+}
+.surreal-home-recent a:hover {
+  color: var(--surreal-white);
+}
 /* ---------- 分类页 ---------- */
 .surreal-cats {
   padding: 6px 0 20px;
@@ -4835,6 +4850,215 @@ body:has(.surreal-essay-marker) .post-body h2::before {
   letter-spacing: 0;
   vertical-align: 0.12em;
   opacity: 0.9;
+}
+/* ---------- 作品集筛选 ---------- */
+[data-portfolio] .surreal-work[hidden] {
+  display: none !important;
+}
+.surreal-portfolio__head {
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+.surreal-portfolio__intro {
+  margin: 0;
+}
+.surreal-portfolio__filter {
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+.surreal-portfolio__filter-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid var(--surreal-line);
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.66em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.surreal-portfolio__filter-item:hover,
+.surreal-portfolio__filter-item.is-active {
+  border-color: var(--surreal-red);
+  color: var(--surreal-white);
+  background: rgba(255,29,29,0.08);
+}
+.surreal-portfolio__filter-count {
+  color: var(--surreal-grey-dark);
+  font-size: 0.86em;
+  letter-spacing: 0.04em;
+}
+.surreal-portfolio__filter-item.is-active .surreal-portfolio__filter-count {
+  color: var(--surreal-red);
+}
+.surreal-portfolio__status {
+  margin: 8px 0 22px;
+  color: var(--surreal-grey-dark);
+  font-family: var(--font-mono);
+  font-size: 0.62em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+/* ---------- 关于页：unknown 与出口 ---------- */
+.surreal-about .surreal-about-unknown {
+  border-left-color: var(--surreal-red);
+  color: var(--surreal-grey);
+  font-family: var(--font-cjk-body);
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+.surreal-about .surreal-about-unknown code {
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+}
+.surreal-about .surreal-about-links {
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 28px;
+  padding-left: 0;
+  border-left: 0;
+  color: var(--surreal-grey-dark);
+  font-family: var(--font-mono);
+  font-size: 0.76em;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: none;
+}
+.surreal-about .surreal-about-links a {
+  color: var(--surreal-grey);
+  text-decoration: none;
+  border-bottom: 1px solid var(--surreal-line);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.surreal-about .surreal-about-links a:hover {
+  color: var(--surreal-red);
+  border-bottom-color: var(--surreal-red);
+}
+/* ---------- 公告 / 站务记录 ---------- */
+.surreal-logs-more {
+  margin: 34px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.68em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.surreal-logs-more a {
+  color: var(--surreal-red);
+  text-decoration: none;
+}
+.surreal-logs-more a:hover {
+  text-shadow: var(--neon-red);
+}
+.surreal-changelog__intro {
+  margin: 0 0 24px;
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.12em;
+}
+/* ---------- 长文目录 ---------- */
+.surreal-toc {
+  margin: 0 0 34px;
+  padding: 16px 20px 18px;
+  border: 1px solid var(--surreal-line);
+  border-left: 2px solid var(--surreal-red);
+  background: linear-gradient(135deg, rgba(255,29,29,0.045), transparent 72%);
+}
+.surreal-toc__kicker {
+  margin: 0 0 12px;
+  color: var(--surreal-red);
+  font-family: var(--font-mono);
+  font-size: 0.64em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.surreal-toc__list {
+  counter-reset: toc;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.surreal-toc__list li {
+  counter-increment: toc;
+  min-width: 0;
+}
+.surreal-toc__list a {
+  display: flex;
+  gap: 10px;
+  border-bottom: 0;
+  color: var(--surreal-grey);
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.surreal-toc__list a::before {
+  content: counter(toc, decimal-leading-zero);
+  flex: 0 0 2.2em;
+  color: var(--surreal-red);
+  opacity: 0.72;
+}
+.surreal-toc__list a:hover {
+  color: var(--surreal-white);
+}
+body:has(.surreal-essay-marker) .post-body h2 {
+  scroll-margin-top: 88px;
+}
+@media (max-width: 767px) {
+  .surreal-toc {
+    padding: 14px 16px 16px;
+  }
+  .surreal-toc__list {
+    grid-template-columns: 1fr;
+    max-height: 244px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+  }
+  .surreal-portfolio__head {
+    align-items: flex-start;
+  }
+}
+/* ---------- 键盘焦点 ---------- */
+.surreal-panel-anchor:focus-visible,
+.surreal-work:focus-visible,
+.menu-item a:focus-visible,
+.surreal-author-social a:focus-visible,
+.surreal-post-back a:focus-visible,
+.surreal-cats a:focus-visible,
+.surreal-toc a:focus-visible,
+.surreal-about-links a:focus-visible,
+.surreal-portfolio__filter-item:focus-visible {
+  outline: 2px solid var(--surreal-red);
+  outline-offset: 4px;
+}
+/* 标题下方红线与描述/元信息之间留出间距，避免红线压住文字 */
+.posts-expand .post-header {
+  padding-bottom: 24px;
+}
+.posts-expand .post-header .post-meta-container {
+  margin-top: 20px;
 }
 @keyframes grainShift {
   0% {
