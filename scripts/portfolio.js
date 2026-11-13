@@ -60,6 +60,38 @@ function getCategories(post) {
   }
 }
 
+function getCategoryCounts(posts) {
+  var counts = {};
+  posts.forEach(function (post) {
+    getCategories(post).forEach(function (name) {
+      counts[name] = (counts[name] || 0) + 1;
+    });
+  });
+  return counts;
+}
+
+function renderFilter(counts, total) {
+  var names = Object.keys(counts).sort();
+  if (names.length < 2) return '';
+
+  var links = [
+    '<a class="surreal-portfolio__filter-item is-active" href="?" data-filter="" aria-current="true">' +
+      '<span>全部</span><span class="surreal-portfolio__filter-count">' + pad2(total) + '</span>' +
+    '</a>'
+  ];
+
+  names.forEach(function (name) {
+    links.push(
+      '<a class="surreal-portfolio__filter-item" href="?category=' + encodeURIComponent(name) + '" data-filter="' + escapeHtml(name) + '">' +
+        '<span>' + escapeHtml(name) + '</span>' +
+        '<span class="surreal-portfolio__filter-count">' + pad2(counts[name]) + '</span>' +
+      '</a>'
+    );
+  });
+
+  return '<nav class="surreal-portfolio__filter" aria-label="按分类筛选作品">' + links.join('') + '</nav>';
+}
+
 hexo.extend.tag.register('portfolio', function () {
   var posts = (hexo.locals.get('posts') || []).toArray()
     .filter(function (post) {
@@ -75,11 +107,14 @@ hexo.extend.tag.register('portfolio', function () {
       '</div>';
   }
 
+  var counts = getCategoryCounts(posts);
+  var filter = renderFilter(counts, posts.length);
+
   var items = posts.map(function (post, index) {
     var categories = getCategories(post);
     return [
-      '<a class="surreal-work" href="' + getPostUrl(post) + '">',
-      '  <span class="surreal-work__index">' + String(index + 1).padStart(2, '0') + '</span>',
+      '<a class="surreal-work" href="' + getPostUrl(post) + '" data-categories="' + escapeHtml(JSON.stringify(categories)) + '">',
+      '  <span class="surreal-work__index">' + pad2(index + 1) + '</span>',
       '  <span class="surreal-work__main">',
       '    <span class="surreal-work__meta">',
       '      <time datetime="' + post.date.toISOString() + '">' + formatDate(post.date) + '</time>',
@@ -93,8 +128,9 @@ hexo.extend.tag.register('portfolio', function () {
     ].filter(Boolean).join('\n');
   });
 
-  return '<div class="surreal-portfolio">\n' +
-    '  <p class="surreal-portfolio__intro">文字、随笔与实验记录。</p>\n' +
+  return '<div class="surreal-portfolio" data-portfolio>\n' +
+    (filter ? '  <div class="surreal-portfolio__head">\n    ' + filter + '\n  </div>\n' : '') +
+    '  <p class="surreal-portfolio__status" aria-live="polite">共 ' + pad2(posts.length) + ' 件作品</p>\n' +
     '  <div class="surreal-portfolio__list">\n' +
     items.join('\n') + '\n' +
     '  </div>\n' +

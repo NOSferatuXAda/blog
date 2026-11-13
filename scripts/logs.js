@@ -83,7 +83,7 @@ hexo.extend.filter.register('before_generate', function () {
 }, 9);
 
 // 输出静态 JSON：供“最新公告自动弹窗”等前端功能读取
-// popup: false 的日志仍显示在公告页，但不参与自动弹窗
+// popup: false 的日志存档在 /changelog/，不进入公开公告与自动弹窗
 hexo.extend.generator.register('logs-json', function () {
   const logs = (cachedLogs || loadLogs()).filter(item => item.popup !== false);
   const root = hexo.config.root || '/';
@@ -102,8 +102,13 @@ hexo.extend.generator.register('logs-json', function () {
   };
 });
 
-hexo.extend.tag.register('logs', function () {
-  const logs = cachedLogs || loadLogs();
+hexo.extend.tag.register('logs', function (args) {
+  var includeInternal = Array.isArray(args) && args.some(function (arg) {
+    return String(arg).trim() === 'all';
+  });
+  var logs = (cachedLogs || loadLogs()).filter(function (item) {
+    return includeInternal || item.popup !== false;
+  });
 
   if (!logs.length) {
     return '<div class="surreal-timeline surreal-timeline-empty">' +
