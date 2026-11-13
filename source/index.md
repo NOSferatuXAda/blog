@@ -11,10 +11,10 @@ comments: false
     <h2 class="surreal-panel-title"><a class="surreal-panel-anchor" href="archives/">作品集</a></h2>
     <p class="surreal-panel-text">模拟人生</p>
   </section>
-  <section class="surreal-panel">
+  <section class="surreal-panel surreal-panel-link">
     <span class="surreal-panel-mark">unknown</span>
-    <h2 class="surreal-panel-title">unknown</h2>
-    <p class="surreal-panel-text">unknown unknown unknown unknown</p>
+    <h2 class="surreal-panel-title"><a class="surreal-panel-anchor" href="about/">关于</a></h2>
+    <p class="surreal-panel-text">一个把下午过成泉眼的人</p>
   </section>
   <section class="surreal-panel surreal-panel-link">
     <span class="surreal-panel-mark">unknown</span>
