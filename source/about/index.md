@@ -14,15 +14,13 @@ comments: false
   <p>一篇随笔，可能写水课——写一门什么也没讲的课里，人怎么自己给自己解渴；一篇日志，可能写实验失败、写环境配置、写模型接入，写那些真实踩过的坑。它们看着天差地别，其实是同一件事：水还在流，机器还在跑，人还没沉下去。</p>
   <p>至于 Creationism 这个名字，你可以读作"创世论"，也可以读作一个理工科学生给自己搭的小世界：在这个世界里，水可以是一门理论，机器可以自己醒着，写东西的人不必自我介绍。</p>
   <p>更新不固定。也许周日，也许不是。</p>
-  <p>留言板开着。不需要自我介绍，直接说事就好。</p>
+  
   <p>至于我为什么把自己比作一只磷虾（Thysanoessa spinifera）——它小、透明、整天泡在水里，靠过滤水里的碎屑活着。这大概就是我：把日子里的渣子滤一遍，自己剩下一点点会发光的身体。</p>
   <p>如果非要说一句关于我：我是百分之七十的水，加百分之三十还没想明白的东西。喝一口，能尝到一点点我。</p>
   <p class="surreal-about-links">
     <a href="../archives/">作品集</a>
     <span aria-hidden="true">·</span>
     <a href="../logs/">公告</a>
-    <span aria-hidden="true">·</span>
-    <a href="../message/">留言板</a>
     <span aria-hidden="true">·</span>
     <a href="https://github.com/NOSferatuXAda" rel="noopener">GitHub</a>
   </p>
