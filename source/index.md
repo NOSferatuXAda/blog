@@ -14,7 +14,7 @@ comments: false
   <section class="surreal-panel surreal-panel-link">
     <span class="surreal-panel-mark">unknown</span>
     <h2 class="surreal-panel-title"><a class="surreal-panel-anchor" href="about/">关于</a></h2>
-    <p class="surreal-panel-text">一个把下午过成泉眼的人</p>
+    <p class="surreal-panel-text">模拟磷虾</p>
   </section>
   <section class="surreal-panel surreal-panel-link">
     <span class="surreal-panel-mark">unknown</span>
