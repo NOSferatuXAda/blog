@@ -6,6 +6,16 @@
 <link rel="preload" href="{{ config.root }}fonts/jetbrains-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="{{ config.root }}fonts/jetbrains-mono-latin-600.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <meta name="color-scheme" content="dark">
+<style id="surreal-heading-spacing-fix">
+  /* 标题红线与描述/元信息之间的保底间距，避免旧缓存样式造成压字 */
+  .posts-expand .post-header {
+    padding-bottom: 24px !important;
+  }
+
+  .posts-expand .post-header .post-meta-container {
+    margin-top: 20px !important;
+  }
+</style>
 <noscript>
   <style>
     .use-motion .column,
