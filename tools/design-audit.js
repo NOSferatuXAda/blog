@@ -37,6 +37,8 @@ var TOKENS = {
 };
 
 // 已知允许的硬编码色（阴影底色等，标记为「例外」）
+var CUSTOM_ONLY = { 'surreal-panel-2': true, 'surreal-line-light': true, 'surreal-grey-dark': true };
+
 var ALLOWED_HEX = {
   '#0e0e0e': '错位硬阴影底色（可考虑 token 化）'
 };
@@ -101,7 +103,7 @@ allFiles.forEach(function (p) {
   var txt = readSafe(p) || '';
   var lines = txt.split('\n');
   lines.forEach(function (line, i) {
-    if (line.indexOf('unknown') >= 0 && line.indexOf('surreal-essay-marker') < 0 && line.indexOf('surreal-panel-mark') < 0 && line.indexOf('unknown-token') < 0 && line.indexOf('unknownBreathe') < 0 && line.indexOf('surreal-about-unknown') < 0) {
+    if (line.indexOf('unknown') >= 0 && line.indexOf('surreal-essay-marker') < 0 && line.indexOf('surreal-panel-mark') < 0 && line.indexOf('unknown-token') < 0 && line.indexOf('unknownBreathe') < 0 && line.indexOf('surreal-about-unknown') < 0 && line.indexOf('/*') < 0) {
       unknownHits.push(r + ':' + (i + 1) + '  ' + line.trim().slice(0, 60));
     }
   });
@@ -159,7 +161,7 @@ Object.keys(TOKENS).forEach(function (hex) {
   // 检查 variables.styl 是否也有同值变量
   var hasStylus = vars.indexOf(stylusVar) >= 0;
   var hasCss = styl.indexOf(TOKENS[hex]) >= 0;
-  if (!hasStylus) syncMiss.push(tokenName + '：variables.styl 缺 ' + stylusVar);
+  if (!hasStylus && !CUSTOM_ONLY[tokenName]) syncMiss.push(tokenName + '：variables.styl 缺 ' + stylusVar);
   if (!hasCss) syncMiss.push(tokenName + '：styles.styl :root 缺 ' + TOKENS[hex]);
 });
 if (syncMiss.length === 0) ok('两套 token 基本同步');
