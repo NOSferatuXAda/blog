@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #62ffff;
+    background: #ff7eff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2740,7 +2740,7 @@ select {
 .site-subtitle {
   color: var(--surreal-grey);
   font-size: 0.62em;
-  letter-spacing: 0.34em;
+  letter-spacing: 0.12em;
   margin-top: 10px;
 }
 .logo-line {
@@ -2861,7 +2861,7 @@ select {
   margin: 0;
   color: var(--surreal-red);
   font-size: 0.66em;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 .surreal-author-name {
@@ -3755,7 +3755,7 @@ html {
   line-height: 1.3;
 }
 .site-subtitle {
-  letter-spacing: 0.32em;
+  letter-spacing: 0.12em;
 }
 .surreal-author-name {
   white-space: nowrap;
