@@ -20,19 +20,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
 
-    <meta name="description" content="在 Windows 上跑通第一个 C 程序，和中文路径搏斗了 2.5 小时。">
+    <meta name="description" content="在 Windows + VS Code 上跑通第一个 C 程序，核心问题是中文路径。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C 环境搭建：和中文路径搏斗的 2.5 小时">
+<meta property="og:title" content="C 环境搭建工作日志">
 <meta property="og:url" content="https://nosferatuxada.github.io/blog/posts/c-env-setup-log/">
 <meta property="og:site_name" content="Creationism">
-<meta property="og:description" content="在 Windows 上跑通第一个 C 程序，和中文路径搏斗了 2.5 小时。">
+<meta property="og:description" content="在 Windows + VS Code 上跑通第一个 C 程序，核心问题是中文路径。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-11-14T18:30:00.000Z">
-<meta property="article:modified_time" content="2026-11-14T18:40:47.653Z">
+<meta property="article:modified_time" content="2026-11-14T18:45:32.813Z">
 <meta property="article:author" content="nosferatu">
 <meta property="article:tag" content="C语言">
 <meta property="article:tag" content="VS Code">
-<meta property="article:tag" content="中文路径">
 <meta property="article:tag" content="环境搭建">
 <meta name="twitter:card" content="summary">
 
@@ -40,10 +39,10 @@
 <link rel="canonical" href="https://nosferatuxada.github.io/blog/posts/c-env-setup-log/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":"","permalink":"https://nosferatuxada.github.io/blog/posts/c-env-setup-log/","path":"posts/c-env-setup-log/","title":"C 环境搭建：和中文路径搏斗的 2.5 小时"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":"","permalink":"https://nosferatuxada.github.io/blog/posts/c-env-setup-log/","path":"posts/c-env-setup-log/","title":"C 环境搭建工作日志"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>C 环境搭建：和中文路径搏斗的 2.5 小时 | Creationism</title>
+<title>C 环境搭建工作日志 | Creationism</title>
   
 
 
@@ -228,12 +227,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="C 环境搭建：和中文路径搏斗的 2.5 小时 | Creationism">
-      <meta itemprop="description" content="在 Windows 上跑通第一个 C 程序，和中文路径搏斗了 2.5 小时。">
+      <meta itemprop="name" content="C 环境搭建工作日志 | Creationism">
+      <meta itemprop="description" content="在 Windows + VS Code 上跑通第一个 C 程序，核心问题是中文路径。">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          C 环境搭建：和中文路径搏斗的 2.5 小时
+          C 环境搭建工作日志
         </h1>
 
         <div class="post-meta-container">
@@ -245,7 +244,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-11-15 02:30:00 / 修改时间：02:40:47" itemprop="dateCreated datePublished" datetime="2026-11-15T02:30:00+08:00">2026-11-15</time>
+      <time title="创建时间：2026-11-15 02:30:00 / 修改时间：02:45:32" itemprop="dateCreated datePublished" datetime="2026-11-15T02:30:00+08:00">2026-11-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -260,7 +259,7 @@
   
 </div>
 
-            <div class="post-description">在 Windows 上跑通第一个 C 程序，和中文路径搏斗了 2.5 小时。</div>
+            <div class="post-description">在 Windows + VS Code 上跑通第一个 C 程序，核心问题是中文路径。</div>
         </div>
       </header>
 
@@ -269,59 +268,32 @@
     
     <div class="post-body" itemprop="articleBody"><div class="surreal-essay-marker" hidden></div>
 
+<p>在 Windows + VS Code 上搭 C 环境，从零到跑通 hello.c，花了 2.5 小时，踩了 8 个坑。6 个是环境问题，2 个是代码问题。</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>Windows 11，中文用户名「宿」。VS Code + cpptools，MinGW-W64 GCC 16.2.0，GDB 18.1。</p>
+<h2 id="8-个坑"><a href="#8-个坑" class="headerlink" title="8 个坑"></a>8 个坑</h2><ol>
+<li>tasks.json 的 command 被一段提示文字占据，一构建就报 CommandNotFoundException。改成编译器绝对路径。</li>
+<li>头文件写成 studio.h，是 stdio 拼错了。</li>
+<li>F5 弹「preLaunchTask 失败」，代码是对的，任务终端卡死。重启 VS Code。</li>
+<li>汇编器报 can’t create 临时文件——用户名「宿」是中文，as.exe 打不开含中文的路径。</li>
+<li>链接器报找不到 crt2.o、-lmingw32——同样是中文路径，ld.exe 打不开自己安装目录里的库。</li>
+<li>改 PATH 时 -join 优先级用错，把 PATH 写坏，连 powershell.exe 都找不到。备份回滚。</li>
+<li>从树莓派拷来的 setup.ps1 是 LF 换行，PowerShell 5.1 解析 here-string 失败。转 CRLF + BOM。</li>
+<li>中文文件名编译出乱码 exe。改名 hello.c。</li>
+</ol>
+<h2 id="核心：中文路径"><a href="#核心：中文路径" class="headerlink" title="核心：中文路径"></a>核心：中文路径</h2><p>4、5、8 是同一类问题：MinGW 的 as.exe &#x2F; ld.exe 是 POSIX 移植，遇非 ASCII 路径走 ANSI 接口，中文被按错误代码页解读，于是「文件存在却打不开」。</p>
+<p>三个环节必须同时是纯 ASCII：工具链安装目录、临时目录、输出目录。只改一处，报错会变但不会消失。我一开始误判成 TEMP、MAX_PATH 问题，最后才定位到工具链路径。</p>
+<p>试过 junction 映射到英文路径，失败——gcc 会把联接解析回真实路径。只能物理复制：</p>
 <blockquote>
-<p>时间：2026-11-15 00:05 — 02:30（约 2.5 小时）<br>目标：在 Windows + VS Code 上跑通第一个 C 程序，并把环境固定下来<br>结果：hello.c 可编译、可运行、可调试，产出一份可复用的配置包</p>
+<p>robocopy 原目录 C:UsersPublicmingw64 &#x2F;E &#x2F;MT:16</p>
 </blockquote>
-<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>我要写 C。课程需要，躲不掉。</p>
-<p>机器上什么都没有：没有 tasks.json，没有编译过哪怕一个文件。第一个程序的文件名叫 1.exe——对，后缀是 .exe，里面装的是 C 源码。按构建键，立刻报错。</p>
-<p>接下来 2.5 小时，我一共撞上 8 个问题。其中只有 2 个和代码有关，剩下 6 个全是环境与配置。这一点我想先记下来：新手卡住，大多数时间不是写错了代码，而是在和工具链的路径搏斗。</p>
-<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>第一个问题，构建任务在执行一句”说明文字”。</p>
-<p>PowerShell 报错，说它无法把一句英文提示识别成命令。我一看，那句话正是 tasks.json 里 promptString 的 description——模板被抄残了，把”提示你输入程序名”的文字，放进了”要执行的程序”的位置。</p>
-<p>第二个问题，studio.h。报错说找不到这个头文件。我盯着它看了几秒——studio 不是 stdio。拼写错了，和前面所有环境问题都无关。</p>
-<p>第三个问题，F5 调试弹”preLaunchTask 失败”。代码此时已经是对的（int main()、stdio.h、return 0），弹这个框说明编译任务本身没跑起来，任务终端卡死了。关掉整个 VS Code 重开，好了。</p>
-<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>真正的大头，从第四个问题开始。</p>
-<blockquote>
-<p>Fatal error: can’t create C:Users宿AppDataLocalTempccXXXX.o</p>
-</blockquote>
-<p>注意，报错的是 Assembler（汇编器），不是 C 代码，也不是链接器。它要把汇编产物写进临时目录，但那个路径打不开——因为里面有个中文字符：宿（我的用户名）。</p>
-<p>我先是把临时目录 %TEMP% 改到纯英文的 C:UsersPublicTemp。结果报错变了，没消失：</p>
-<blockquote>
-<p>ld.exe: cannot find crt2.o<br>ld.exe: cannot find -lmingw32</p>
-</blockquote>
-<p>汇编过了，链接挂了。而且 ld 找不到的，是编译器自己安装目录里的库——那些文件明明存在。</p>
-<p>我一度怀疑是路径太长（MAX_PATH 260 字符），一量，215，没超。</p>
-<p>最后才想明白：MinGW 的 as.exe &#x2F; ld.exe 是 POSIX 移植，遇到非 ASCII 路径会走 ANSI 接口，中文字节被按错误代码页解读——于是”文件存在，却打不开”。</p>
-<p>这也是为什么我之前所有的努力（改后缀、改头文件、改文件名）都无效：每次都死在同一处，只是报错信息从”临时文件建不出来”变成了”库找不到”。</p>
-<h2 id="四"><a href="#四" class="headerlink" title="四"></a>四</h2><p>我试过用目录联接（junction）把工具链”映射”到英文路径，省得复制 917MB。失败——gcc 会把联接解析回真实路径，报错里显示的仍是那个中文路径。符号链接救不了，工具链必须物理上待在纯英文路径里。</p>
-<p>于是整份复制到 C:UsersPublicmingw64。917MB，11873 个文件。复制完再编译：</p>
-<blockquote>
-<p>Hello, C! compiler: GCC&#x2F;Clang 16.2.0, standard: C17</p>
-</blockquote>
-<p>成了。</p>
-<h2 id="五"><a href="#五" class="headerlink" title="五"></a>五</h2><p>但还没完。改 PATH 的时候，我又把自己绊了一跤。</p>
-<p>我写了一句 PowerShell 想拼接 PATH。PowerShell 里 -join 的优先级高于 +，结果首项和第二个条目粘成了一条，PATH 结构坏了，连 powershell.exe 都解析不到。好在改动前存了备份，回滚重建。</p>
-<p>还有两个小问题收尾：</p>
-<ul>
-<li>从树莓派拷来的 setup.ps1 一运行就报”&amp; 字符不允许”——它是 Linux 的 LF 换行，PowerShell 5.1 在 LF 文件里识别不好 here-string。转成 CRLF + UTF-8 BOM，好了。</li>
-<li>用中文文件名编译，编译成功，但产物是乱码 exe——gcc 把中文参数按 ANSI 传给了 Windows。改名 hello.c，产物恢复 hello.exe。</li>
-</ul>
-<h2 id="六"><a href="#六" class="headerlink" title="六"></a>六</h2><p>最后一条补全了整件事的模型：不只是工具链和临时目录，连”输出文件的目标路径”含中文也会失败。</p>
-<p>因为我的桌面在含中文的 OneDrive 路径下，凡是在桌面、文档、下载目录里编译，必挂。把工程整体移到纯英文的目录，自检通过。</p>
-<p>三个环节，必须同时是纯 ASCII，缺一个都不行：工具链安装目录、临时目录、输出目录。这也是为什么”改一处、报错变了、还是失败”会反复出现——我每次只修了一个环节。</p>
-<h2 id="七"><a href="#七" class="headerlink" title="七"></a>七</h2><p>最终，hello.exe 跑起来了：</p>
-<blockquote>
-<p>hello shit</p>
-</blockquote>
-<p>样例里写的词不太文雅，但那一刻它是真的。</p>
-<p>2.5 小时，8 个问题，6 个是环境。核心就一句：中文用户名，是 Windows 上 C 开发的高频故障源。</p>
-<h2 id="经验与坑"><a href="#经验与坑" class="headerlink" title="经验与坑"></a>经验与坑</h2><ol>
-<li>报错要读全，尤其看清是哪个组件在报：Assembler 是汇编器，ld.exe 是链接器，collect2 是驱动层收尾。三者对应完全不同的原因。</li>
-<li>“文件明明存在却报找不到”，先怀疑编码，而不是路径本身。</li>
-<li>变量被展开的痕迹是线索——工作目录变量变成实际路径，说明这段字符串处在”会被求值”的位置。</li>
-<li>改系统配置前先备份，改完逐条核对。PATH 被写坏，就是因为只看了”执行成功”。</li>
-<li>跨平台脚本的行尾不是小事，LF 和 CRLF 在 PowerShell here-string 上有实质差异。</li>
-<li>别在桌面&#x2F;文档目录下编译 C——中文用户名机器上，这些路径天然带非 ASCII。</li>
-<li>AI 也会误判。这次先后误判为”模板问题””TEMP 问题””MAX_PATH 问题”，靠的是每轮拿到新报错再修正假设。及时给我截图，是排查能推进的关键。</li>
+<p>917MB，复制完编译通过。</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>工具链固定在 C:UsersPublicmingw64，工程移到纯英文目录。hello.c 编译、运行、调试正常，产出一份可复用的配置包。</p>
+<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><ol>
+<li>报错先看清是哪个组件：Assembler、ld.exe、collect2 对应完全不同的原因。</li>
+<li>「文件存在却报找不到」，先怀疑编码，尤其中文用户名。</li>
+<li>别在桌面、文档、下载目录下编译 C，这些路径带中文。</li>
+<li>改 PATH 前先备份，改完逐条核对。</li>
+<li>跨平台脚本注意行尾，LF 和 CRLF 在 PowerShell here-string 上有实质差异。</li>
 </ol>
 <p class="surreal-post-back"><a href="../../archives/">← 返回作品集</a></p>
 
@@ -336,7 +308,6 @@
               <a href="/blog/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
               <a href="/blog/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag"># 环境搭建</a>
               <a href="/blog/tags/VS-Code/" rel="tag"># VS Code</a>
-              <a href="/blog/tags/%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84/" rel="tag"># 中文路径</a>
           </div>
 
         
