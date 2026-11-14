@@ -2912,3 +2912,122 @@ body:has(.surreal-essay-marker) .post-body h2 {
 
 
 
+
+/* ---------- 环流页 ---------- */
+.surreal-gyre {
+  position: relative;
+  width: 74%;
+  margin: 0 4% 40px auto;
+  padding: 18px 0 0;
+}
+
+.surreal-gyre__svg {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto 30px;
+}
+
+.gyre-ring-warm {
+  fill: none;
+  stroke: var(--surreal-red);
+  stroke-width: 1.5px;
+  opacity: 0.55;
+}
+
+.gyre-ring-cold {
+  fill: none;
+  stroke: var(--surreal-grey);
+  stroke-width: 1px;
+  opacity: 0.4;
+}
+
+.gyre-belt-dash {
+  fill: none;
+  stroke: var(--surreal-red);
+  stroke-width: 1px;
+  stroke-dasharray: 3 10;
+  opacity: 0.45;
+}
+
+.gyre-belt-arrow {
+  fill: var(--surreal-red);
+  opacity: 0.85;
+}
+
+.gyre-node-dot {
+  fill: var(--surreal-red);
+}
+
+.gyre-node-label {
+  fill: var(--surreal-white);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: fill 0.15s ease;
+}
+
+.gyre-node:hover .gyre-node-label {
+  fill: var(--surreal-red);
+}
+
+.gyre-center {
+  fill: var(--surreal-white);
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 0.35em;
+}
+
+.gyre-center-sub {
+  fill: var(--surreal-grey);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+}
+
+.surreal-gyre__intro {
+  margin: 0 0 14px;
+  color: var(--surreal-red);
+  font-size: 1.05em;
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+
+.surreal-gyre__text {
+  max-width: 520px;
+  margin: 0 auto 26px;
+  color: var(--surreal-grey);
+  font-size: 0.88em;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.surreal-gyre__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  justify-content: center;
+  margin: 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--surreal-line);
+  list-style: none;
+}
+
+.surreal-gyre__links a {
+  color: var(--surreal-white);
+  font-size: 0.85em;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--surreal-line-light);
+}
+
+.surreal-gyre__links a:hover {
+  color: var(--surreal-red);
+  border-bottom-color: var(--surreal-red);
+}
+
+@media (max-width: 767px) {
+  .surreal-gyre {
+    width: 100%;
+    margin: 0 0 32px;
+  }
+}
