@@ -9,19 +9,19 @@ comments: false
 
 <div class="surreal-home">
   <section class="surreal-panel surreal-panel-link">
-    <span class="surreal-panel-mark">unknown</span>
+    <span class="surreal-panel-mark">LIFE</span>
     <h2 class="surreal-panel-title"><a class="surreal-panel-anchor" href="archives/">作品集</a></h2>
     <p class="surreal-panel-text">模拟人生</p>
   </section>
   <section class="surreal-panel surreal-panel-link">
-    <span class="surreal-panel-mark">unknown</span>
+    <span class="surreal-panel-mark">KRILL</span>
     <h2 class="surreal-panel-title"><a class="surreal-panel-anchor" href="about/">关于</a></h2>
     <p class="surreal-panel-text">模拟磷虾</p>
   </section>
   <section class="surreal-panel surreal-panel-link">
-    <span class="surreal-panel-mark">unknown</span>
+    <span class="surreal-panel-mark">CURRENT</span>
     <h2 class="surreal-panel-title"><a class="surreal-panel-anchor" href="gyre/">环流</a></h2>
     <p class="surreal-panel-text">模拟洋流</p>
   </section>
-  <p class="surreal-home-recent">最近更新 · <a href="posts/pi5-dsh-openclaw-deploy-log/">树莓派 5：dsh + OpenClaw 部署工作日志</a></p>
+  {% latest_post %}
 </div>
