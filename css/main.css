@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #5b78d7;
+    background: #e0c2ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -4776,6 +4776,28 @@ body:has(.surreal-essay-marker) .post-body h2 {
 }
 .gyre-center-glitch {
   animation: gyre-glitch 6.5s infinite;
+}
+/* ---------- 磷虾：虾形细化（分节 / 复眼 / 游泳足 / 半透明身体） ---------- */
+.gyre-krill-body {
+  fill: var(--surreal-white);
+  fill-opacity: 0.14;
+  stroke-width: 0.8;
+}
+.gyre-krill-segment {
+  fill: none;
+  stroke: var(--surreal-white);
+  stroke-width: 0.45;
+  opacity: 0.55;
+}
+.gyre-krill-eye {
+  fill: var(--surreal-white);
+  opacity: 0.9;
+}
+.gyre-krill-leg {
+  fill: none;
+  stroke: var(--surreal-white);
+  stroke-width: 0.45;
+  opacity: 0.5;
 }
 @keyframes grainShift {
   0% {
