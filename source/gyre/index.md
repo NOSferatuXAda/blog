@@ -18,6 +18,10 @@ comments: false
 <circle cx="240" cy="240" r="205" fill="url(#gyreGlow)" class="gyre-glow"/>
 
 <circle cx="240" cy="240" r="176" class="gyre-ring-warm"/>
+<g>
+<animateTransform attributeName="transform" type="rotate" values="4 240 240; 11 240 240; 4 240 240" dur="14s" repeatCount="indefinite"/>
+<circle cx="240" cy="240" r="177" class="gyre-ring-ghost"/>
+</g>
 
 <g>
 <animateTransform attributeName="transform" type="rotate" from="360 240 240" to="0 240 240" dur="30s" repeatCount="indefinite"/>
@@ -88,12 +92,15 @@ comments: false
 <text x="82" y="194" text-anchor="end" dominant-baseline="middle" class="gyre-node-label">关于</text>
 </a>
 
-<text x="240" y="232" text-anchor="middle" dominant-baseline="middle" class="gyre-center">环流</text>
-<text x="240" y="262" text-anchor="middle" dominant-baseline="middle" class="gyre-center-sub">H2O · 温盐环流</text>
+<text x="240" y="232" text-anchor="middle" dominant-baseline="middle" class="gyre-center" transform="rotate(-4 240 232)">环流</text>
+<text x="240" y="264" text-anchor="middle" dominant-baseline="middle" class="gyre-center-sub" transform="rotate(2 240 264)">H2O · 温盐环流</text>
 </svg>
 
-<p class="surreal-gyre__intro">一切最终汇入同一条洋流。</p>
-<p class="surreal-gyre__text">这里的随笔是暖流，漂在表面；实验记录是寒流，沉在深处。它们一上一下，首尾相接，转成一圈——谁也不是谁的终点，只是同一个环上的不同位置。</p>
+<p class="surreal-gyre__intro">水在转。我也在转。</p>
+<p class="surreal-gyre__text">暖流在上，寒流在下。我一会儿浮上去，一会儿沉下来，其实不知道自己在哪一层。</p>
+<p class="surreal-gyre__text">浮上去的时候，我写漂着的话；沉下去的时候，我数没人看的数字。写完了，数完了，水又转回来，把我冲回原地。</p>
+<p class="surreal-gyre__text">可环流没有原地。没有起点，没有终点，也没有中心——你站哪儿，哪儿就是中心，下一秒又不是了。</p>
+<p class="surreal-gyre__text">所以别问方向。转就好了。</p>
 
 <ul class="surreal-gyre__links">
 <li><a href="../archives/">作品集</a></li>
