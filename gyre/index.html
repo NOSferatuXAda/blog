@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
 
-    <meta name="description" content="&lt;!-- 旋转环流带 --&gt; &lt;g&gt;   &lt;animateTransform attributeName&#x3D;&quot;transform&quot; type&#x3D;&quot;rotate&quot; from&#x3D;&quot;0 240 240&quot; to&#x3D;&quot;360 240 240&quot; dur&#x3D;&amp;qu">
+    <meta name="description" content="作品集    随笔    实验    公告    关于   环流H2O · 温盐环流 一切最终汇入同一条洋流。 这里的随笔是暖流，漂在表面；实验记录是寒流，沉在深处。它们一上一下，首尾相接，转成一圈——谁也不是谁的终点，只是同一个环上的不同位置。   作品集 随笔 实验">
 <meta property="og:type" content="website">
 <meta property="og:title" content="环流">
 <meta property="og:url" content="https://nosferatuxada.github.io/blog/gyre/">
 <meta property="og:site_name" content="Creationism">
-<meta property="og:description" content="&lt;!-- 旋转环流带 --&gt; &lt;g&gt;   &lt;animateTransform attributeName&#x3D;&quot;transform&quot; type&#x3D;&quot;rotate&quot; from&#x3D;&quot;0 240 240&quot; to&#x3D;&quot;360 240 240&quot; dur&#x3D;&amp;qu">
+<meta property="og:description" content="作品集    随笔    实验    公告    关于   环流H2O · 温盐环流 一切最终汇入同一条洋流。 这里的随笔是暖流，漂在表面；实验记录是寒流，沉在深处。它们一上一下，首尾相接，转成一圈——谁也不是谁的终点，只是同一个环上的不同位置。   作品集 随笔 实验">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-11-14T04:07:35.370Z">
-<meta property="article:modified_time" content="2026-11-14T04:07:35.370Z">
+<meta property="article:published_time" content="2026-11-14T04:18:32.269Z">
+<meta property="article:modified_time" content="2026-11-14T04:18:32.269Z">
 <meta property="article:author" content="nosferatu">
 <meta property="article:tag" content="nosferatu, Creationism, 科研日常, 随笔, 实验记录">
 <meta name="twitter:card" content="summary">
@@ -211,60 +211,99 @@
       
       <div class="post-body">
           <div class="surreal-gyre">
-  <svg class="surreal-gyre__svg" viewBox="0 0 480 480" role="img" aria-label="环流示意图">
-    <!-- 外环：暖流（表层） -->
-    <circle cx="240" cy="240" r="176" class="gyre-ring-warm" />
-    <!-- 内环：寒流（深层） -->
-    <circle cx="240" cy="240" r="96" class="gyre-ring-cold" />
+<svg class="surreal-gyre__svg" viewBox="0 0 480 480" role="img" aria-label="环流示意图">
+<defs>
+<radialGradient id="gyreGlow" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#ff1d1d" stop-opacity="0.22"/>
+<stop offset="55%" stop-color="#ff1d1d" stop-opacity="0.06"/>
+<stop offset="100%" stop-color="#ff1d1d" stop-opacity="0"/>
+</radialGradient>
+</defs>
 
-<pre><code>&lt;!-- 旋转环流带 --&gt;
-&lt;g&gt;
-  &lt;animateTransform attributeName=&quot;transform&quot; type=&quot;rotate&quot; from=&quot;0 240 240&quot; to=&quot;360 240 240&quot; dur=&quot;40s&quot; repeatCount=&quot;indefinite&quot; /&gt;
-  &lt;circle cx=&quot;240&quot; cy=&quot;240&quot; r=&quot;136&quot; class=&quot;gyre-belt-dash&quot; /&gt;
-  &lt;path d=&quot;M 372 232 L 388 240 L 372 248 Z&quot; class=&quot;gyre-belt-arrow&quot; /&gt;
-  &lt;path d=&quot;M 232 372 L 240 388 L 248 372 Z&quot; class=&quot;gyre-belt-arrow&quot; /&gt;
-  &lt;path d=&quot;M 108 232 L 92 240 L 108 248 Z&quot; class=&quot;gyre-belt-arrow&quot; /&gt;
-  &lt;path d=&quot;M 232 108 L 240 92 L 248 108 Z&quot; class=&quot;gyre-belt-arrow&quot; /&gt;
-&lt;/g&gt;
+<circle cx="240" cy="240" r="205" fill="url(#gyreGlow)" class="gyre-glow"/>
 
-&lt;!-- 节点 --&gt;
-&lt;a href=&quot;../archives/&quot; class=&quot;gyre-node&quot;&gt;
-  &lt;circle cx=&quot;240&quot; cy=&quot;104&quot; r=&quot;5&quot; class=&quot;gyre-node-dot&quot; /&gt;
-  &lt;text x=&quot;240&quot; y=&quot;78&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; class=&quot;gyre-node-label&quot;&gt;作品集&lt;/text&gt;
-&lt;/a&gt;
-&lt;a href=&quot;../categories/日常/&quot; class=&quot;gyre-node&quot;&gt;
-  &lt;circle cx=&quot;369&quot; cy=&quot;198&quot; r=&quot;5&quot; class=&quot;gyre-node-dot&quot; /&gt;
-  &lt;text x=&quot;394&quot; y=&quot;198&quot; text-anchor=&quot;start&quot; dominant-baseline=&quot;middle&quot; class=&quot;gyre-node-label&quot;&gt;随笔&lt;/text&gt;
-&lt;/a&gt;
-&lt;a href=&quot;../categories/技术/&quot; class=&quot;gyre-node&quot;&gt;
-  &lt;circle cx=&quot;320&quot; cy=&quot;350&quot; r=&quot;5&quot; class=&quot;gyre-node-dot&quot; /&gt;
-  &lt;text x=&quot;320&quot; y=&quot;380&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; class=&quot;gyre-node-label&quot;&gt;实验&lt;/text&gt;
-&lt;/a&gt;
-&lt;a href=&quot;../logs/&quot; class=&quot;gyre-node&quot;&gt;
-  &lt;circle cx=&quot;160&quot; cy=&quot;350&quot; r=&quot;5&quot; class=&quot;gyre-node-dot&quot; /&gt;
-  &lt;text x=&quot;160&quot; y=&quot;380&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; class=&quot;gyre-node-label&quot;&gt;公告&lt;/text&gt;
-&lt;/a&gt;
-&lt;a href=&quot;../about/&quot; class=&quot;gyre-node&quot;&gt;
-  &lt;circle cx=&quot;111&quot; cy=&quot;198&quot; r=&quot;5&quot; class=&quot;gyre-node-dot&quot; /&gt;
-  &lt;text x=&quot;86&quot; y=&quot;198&quot; text-anchor=&quot;end&quot; dominant-baseline=&quot;middle&quot; class=&quot;gyre-node-label&quot;&gt;关于&lt;/text&gt;
-&lt;/a&gt;
+<circle cx="240" cy="240" r="176" class="gyre-ring-warm"/>
 
-&lt;!-- 中心 --&gt;
-&lt;text x=&quot;240&quot; y=&quot;234&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; class=&quot;gyre-center&quot;&gt;环流&lt;/text&gt;
-&lt;text x=&quot;240&quot; y=&quot;264&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; class=&quot;gyre-center-sub&quot;&gt;H2O · 温盐环流&lt;/text&gt;
-</code></pre>
-  </svg>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="360 240 240" to="0 240 240" dur="30s" repeatCount="indefinite"/>
+<circle cx="240" cy="240" r="150" class="gyre-belt-dash gyre-belt-dash--warm"/>
+</g>
 
-  <p class="surreal-gyre__intro">一切最终汇入同一条洋流。</p>
-  <p class="surreal-gyre__text">这里的随笔是暖流，漂在表面；实验记录是寒流，沉在深处。它们一上一下，首尾相接，转成一圈——谁也不是谁的终点，只是同一个环上的不同位置。</p>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="0 240 240" to="360 240 240" dur="48s" repeatCount="indefinite"/>
+<circle cx="240" cy="240" r="126" class="gyre-belt-dash gyre-belt-dash--cold"/>
+<path d="M 362 232 L 378 240 L 362 248 Z" class="gyre-belt-arrow"/>
+<path d="M 232 362 L 240 378 L 248 362 Z" class="gyre-belt-arrow"/>
+<path d="M 118 232 L 102 240 L 118 248 Z" class="gyre-belt-arrow"/>
+</g>
 
-  <ul class="surreal-gyre__links">
-    <li><a href="../archives/">作品集</a></li>
-    <li><a href="../categories/日常/">随笔</a></li>
-    <li><a href="../categories/技术/">实验</a></li>
-    <li><a href="../logs/">公告</a></li>
-    <li><a href="../about/">关于</a></li>
-  </ul>
+<circle cx="240" cy="240" r="96" class="gyre-ring-cold"/>
+
+<g>
+<animateTransform attributeName="transform" type="rotate" from="0 240 240" to="360 240 240" dur="24s" repeatCount="indefinite"/>
+<circle cx="412" cy="240" r="3" class="gyre-particle"/>
+</g>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="360 240 240" to="0 240 240" dur="40s" repeatCount="indefinite"/>
+<circle cx="350" cy="350" r="2" class="gyre-particle"/>
+</g>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="0 240 240" to="360 240 240" dur="18s" repeatCount="indefinite"/>
+<circle cx="240" cy="375" r="2.5" class="gyre-particle"/>
+</g>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="360 240 240" to="0 240 240" dur="34s" repeatCount="indefinite"/>
+<circle cx="127" cy="353" r="2" class="gyre-particle"/>
+</g>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="0 240 240" to="360 240 240" dur="28s" repeatCount="indefinite"/>
+<circle cx="122" cy="240" r="3" class="gyre-particle"/>
+</g>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="360 240 240" to="0 240 240" dur="22s" repeatCount="indefinite"/>
+<circle cx="134" cy="134" r="2" class="gyre-particle"/>
+</g>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="0 240 240" to="360 240 240" dur="36s" repeatCount="indefinite"/>
+<circle cx="240" cy="112" r="2.5" class="gyre-particle"/>
+</g>
+<g>
+<animateTransform attributeName="transform" type="rotate" from="360 240 240" to="0 240 240" dur="30s" repeatCount="indefinite"/>
+<circle cx="359" cy="121" r="2" class="gyre-particle"/>
+</g>
+
+<a href="../archives/" class="gyre-node">
+<circle cx="240" cy="90" r="5" class="gyre-node-dot"/>
+<text x="240" y="70" text-anchor="middle" dominant-baseline="middle" class="gyre-node-label">作品集</text>
+</a>
+<a href="../categories/日常/" class="gyre-node">
+<circle cx="383" cy="194" r="5" class="gyre-node-dot"/>
+<text x="398" y="194" text-anchor="start" dominant-baseline="middle" class="gyre-node-label">随笔</text>
+</a>
+<a href="../categories/技术/" class="gyre-node">
+<circle cx="328" cy="361" r="5" class="gyre-node-dot"/>
+<text x="328" y="385" text-anchor="middle" dominant-baseline="middle" class="gyre-node-label">实验</text>
+</a>
+<a href="../logs/" class="gyre-node">
+<circle cx="152" cy="361" r="5" class="gyre-node-dot"/>
+<text x="152" y="385" text-anchor="middle" dominant-baseline="middle" class="gyre-node-label">公告</text>
+</a>
+<a href="../about/" class="gyre-node">
+<circle cx="97" cy="194" r="5" class="gyre-node-dot"/>
+<text x="82" y="194" text-anchor="end" dominant-baseline="middle" class="gyre-node-label">关于</text>
+</a>
+
+<p><text x="240" y="232" text-anchor="middle" dominant-baseline="middle" class="gyre-center">环流</text><br><text x="240" y="262" text-anchor="middle" dominant-baseline="middle" class="gyre-center-sub">H2O · 温盐环流</text><br></svg></p>
+<p class="surreal-gyre__intro">一切最终汇入同一条洋流。</p>
+<p class="surreal-gyre__text">这里的随笔是暖流，漂在表面；实验记录是寒流，沉在深处。它们一上一下，首尾相接，转成一圈——谁也不是谁的终点，只是同一个环上的不同位置。</p>
+
+<ul class="surreal-gyre__links">
+<li><a href="../archives/">作品集</a></li>
+<li><a href="../categories/日常/">随笔</a></li>
+<li><a href="../categories/技术/">实验</a></li>
+<li><a href="../logs/">公告</a></li>
+<li><a href="../about/">关于</a></li>
+</ul>
 </div>
 
       </div>
