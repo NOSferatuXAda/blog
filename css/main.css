@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #98ffe9;
+    background: #e7b6ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -4770,6 +4770,13 @@ body:has(.surreal-essay-marker) .post-body h2 {
   opacity: 0.35;
   user-select: none;
 }
+/* ---------- 环流页：更狠的解构（拆字 + 幽灵字 + glitch 抖动） ---------- */
+.gyre-center-ghost {
+  opacity: 0.18;
+}
+.gyre-center-glitch {
+  animation: gyre-glitch 6.5s infinite;
+}
 @keyframes grainShift {
   0% {
     transform: translate(0, 0);
@@ -4882,5 +4889,22 @@ body:has(.surreal-essay-marker) .post-body h2 {
   }
   50% {
     opacity: 1;
+  }
+}
+@keyframes gyre-glitch {
+  0%, 82%, 100% {
+    transform: translate(0, 0);
+  }
+  83% {
+    transform: translate(-5px, 2px);
+  }
+  84% {
+    transform: translate(4px, -2px);
+  }
+  85% {
+    transform: translate(-2px, 1px);
+  }
+  86% {
+    transform: translate(0, 0);
   }
 }
