@@ -1,108 +1,56 @@
 ---
-title: C 环境搭建：和中文路径搏斗的 2.5 小时
+title: C 环境搭建工作日志
 date: 2026-11-15 02:30:00
 categories: 技术
 tags:
   - C语言
   - 环境搭建
   - VS Code
-  - 中文路径
-description: 在 Windows 上跑通第一个 C 程序，和中文路径搏斗了 2.5 小时。
+description: 在 Windows + VS Code 上跑通第一个 C 程序，核心问题是中文路径。
 comments: false
 ---
 
 <div class="surreal-essay-marker" hidden></div>
 
-> 时间：2026-11-15 00:05 — 02:30（约 2.5 小时）
-> 目标：在 Windows + VS Code 上跑通第一个 C 程序，并把环境固定下来
-> 结果：hello.c 可编译、可运行、可调试，产出一份可复用的配置包
+在 Windows + VS Code 上搭 C 环境，从零到跑通 hello.c，花了 2.5 小时，踩了 8 个坑。6 个是环境问题，2 个是代码问题。
 
-## 一
+## 环境
 
-我要写 C。课程需要，躲不掉。
+Windows 11，中文用户名「宿」。VS Code + cpptools，MinGW-W64 GCC 16.2.0，GDB 18.1。
 
-机器上什么都没有：没有 tasks.json，没有编译过哪怕一个文件。第一个程序的文件名叫 1.exe——对，后缀是 .exe，里面装的是 C 源码。按构建键，立刻报错。
+## 8 个坑
 
-接下来 2.5 小时，我一共撞上 8 个问题。其中只有 2 个和代码有关，剩下 6 个全是环境与配置。这一点我想先记下来：新手卡住，大多数时间不是写错了代码，而是在和工具链的路径搏斗。
+1. tasks.json 的 command 被一段提示文字占据，一构建就报 CommandNotFoundException。改成编译器绝对路径。
+2. 头文件写成 studio.h，是 stdio 拼错了。
+3. F5 弹「preLaunchTask 失败」，代码是对的，任务终端卡死。重启 VS Code。
+4. 汇编器报 can't create 临时文件——用户名「宿」是中文，as.exe 打不开含中文的路径。
+5. 链接器报找不到 crt2.o、-lmingw32——同样是中文路径，ld.exe 打不开自己安装目录里的库。
+6. 改 PATH 时 -join 优先级用错，把 PATH 写坏，连 powershell.exe 都找不到。备份回滚。
+7. 从树莓派拷来的 setup.ps1 是 LF 换行，PowerShell 5.1 解析 here-string 失败。转 CRLF + BOM。
+8. 中文文件名编译出乱码 exe。改名 hello.c。
 
-## 二
+## 核心：中文路径
 
-第一个问题，构建任务在执行一句"说明文字"。
+4、5、8 是同一类问题：MinGW 的 as.exe / ld.exe 是 POSIX 移植，遇非 ASCII 路径走 ANSI 接口，中文被按错误代码页解读，于是「文件存在却打不开」。
 
-PowerShell 报错，说它无法把一句英文提示识别成命令。我一看，那句话正是 tasks.json 里 promptString 的 description——模板被抄残了，把"提示你输入程序名"的文字，放进了"要执行的程序"的位置。
+三个环节必须同时是纯 ASCII：工具链安装目录、临时目录、输出目录。只改一处，报错会变但不会消失。我一开始误判成 TEMP、MAX_PATH 问题，最后才定位到工具链路径。
 
-第二个问题，studio.h。报错说找不到这个头文件。我盯着它看了几秒——studio 不是 stdio。拼写错了，和前面所有环境问题都无关。
+试过 junction 映射到英文路径，失败——gcc 会把联接解析回真实路径。只能物理复制：
 
-第三个问题，F5 调试弹"preLaunchTask 失败"。代码此时已经是对的（int main()、stdio.h、return 0），弹这个框说明编译任务本身没跑起来，任务终端卡死了。关掉整个 VS Code 重开，好了。
+> robocopy 原目录 C:UsersPublicmingw64 /E /MT:16
 
-## 三
+917MB，复制完编译通过。
 
-真正的大头，从第四个问题开始。
+## 结果
 
-> Fatal error: can't create C:Users宿AppDataLocalTempccXXXX.o
+工具链固定在 C:UsersPublicmingw64，工程移到纯英文目录。hello.c 编译、运行、调试正常，产出一份可复用的配置包。
 
-注意，报错的是 Assembler（汇编器），不是 C 代码，也不是链接器。它要把汇编产物写进临时目录，但那个路径打不开——因为里面有个中文字符：宿（我的用户名）。
+## 经验
 
-我先是把临时目录 %TEMP% 改到纯英文的 C:UsersPublicTemp。结果报错变了，没消失：
-
-> ld.exe: cannot find crt2.o
-> ld.exe: cannot find -lmingw32
-
-汇编过了，链接挂了。而且 ld 找不到的，是编译器自己安装目录里的库——那些文件明明存在。
-
-我一度怀疑是路径太长（MAX_PATH 260 字符），一量，215，没超。
-
-最后才想明白：MinGW 的 as.exe / ld.exe 是 POSIX 移植，遇到非 ASCII 路径会走 ANSI 接口，中文字节被按错误代码页解读——于是"文件存在，却打不开"。
-
-这也是为什么我之前所有的努力（改后缀、改头文件、改文件名）都无效：每次都死在同一处，只是报错信息从"临时文件建不出来"变成了"库找不到"。
-
-## 四
-
-我试过用目录联接（junction）把工具链"映射"到英文路径，省得复制 917MB。失败——gcc 会把联接解析回真实路径，报错里显示的仍是那个中文路径。符号链接救不了，工具链必须物理上待在纯英文路径里。
-
-于是整份复制到 C:UsersPublicmingw64。917MB，11873 个文件。复制完再编译：
-
-> Hello, C! compiler: GCC/Clang 16.2.0, standard: C17
-
-成了。
-
-## 五
-
-但还没完。改 PATH 的时候，我又把自己绊了一跤。
-
-我写了一句 PowerShell 想拼接 PATH。PowerShell 里 -join 的优先级高于 +，结果首项和第二个条目粘成了一条，PATH 结构坏了，连 powershell.exe 都解析不到。好在改动前存了备份，回滚重建。
-
-还有两个小问题收尾：
-
-- 从树莓派拷来的 setup.ps1 一运行就报"& 字符不允许"——它是 Linux 的 LF 换行，PowerShell 5.1 在 LF 文件里识别不好 here-string。转成 CRLF + UTF-8 BOM，好了。
-- 用中文文件名编译，编译成功，但产物是乱码 exe——gcc 把中文参数按 ANSI 传给了 Windows。改名 hello.c，产物恢复 hello.exe。
-
-## 六
-
-最后一条补全了整件事的模型：不只是工具链和临时目录，连"输出文件的目标路径"含中文也会失败。
-
-因为我的桌面在含中文的 OneDrive 路径下，凡是在桌面、文档、下载目录里编译，必挂。把工程整体移到纯英文的目录，自检通过。
-
-三个环节，必须同时是纯 ASCII，缺一个都不行：工具链安装目录、临时目录、输出目录。这也是为什么"改一处、报错变了、还是失败"会反复出现——我每次只修了一个环节。
-
-## 七
-
-最终，hello.exe 跑起来了：
-
-> hello shit
-
-样例里写的词不太文雅，但那一刻它是真的。
-
-2.5 小时，8 个问题，6 个是环境。核心就一句：中文用户名，是 Windows 上 C 开发的高频故障源。
-
-## 经验与坑
-
-1. 报错要读全，尤其看清是哪个组件在报：Assembler 是汇编器，ld.exe 是链接器，collect2 是驱动层收尾。三者对应完全不同的原因。
-2. "文件明明存在却报找不到"，先怀疑编码，而不是路径本身。
-3. 变量被展开的痕迹是线索——工作目录变量变成实际路径，说明这段字符串处在"会被求值"的位置。
-4. 改系统配置前先备份，改完逐条核对。PATH 被写坏，就是因为只看了"执行成功"。
-5. 跨平台脚本的行尾不是小事，LF 和 CRLF 在 PowerShell here-string 上有实质差异。
-6. 别在桌面/文档目录下编译 C——中文用户名机器上，这些路径天然带非 ASCII。
-7. AI 也会误判。这次先后误判为"模板问题""TEMP 问题""MAX_PATH 问题"，靠的是每轮拿到新报错再修正假设。及时给我截图，是排查能推进的关键。
+1. 报错先看清是哪个组件：Assembler、ld.exe、collect2 对应完全不同的原因。
+2. 「文件存在却报找不到」，先怀疑编码，尤其中文用户名。
+3. 别在桌面、文档、下载目录下编译 C，这些路径带中文。
+4. 改 PATH 前先备份，改完逐条核对。
+5. 跨平台脚本注意行尾，LF 和 CRLF 在 PowerShell here-string 上有实质差异。
 
 <p class="surreal-post-back"><a href="../../archives/">← 返回作品集</a></p>
