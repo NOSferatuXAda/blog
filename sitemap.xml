@@ -110,6 +110,13 @@
 
   
   <url>
+    <loc>https://nosferatuxada.github.io/blog/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://nosferatuxada.github.io/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -137,24 +144,17 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://nosferatuxada.github.io/blog/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2026-11-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://nosferatuxada.github.io/blog/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://nosferatuxada.github.io/blog/categories/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://nosferatuxada.github.io/blog/categories/%E6%97%A5%E5%B8%B8/</loc>
+    <loc>https://nosferatuxada.github.io/blog/categories/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
