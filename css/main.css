@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #e0c2ff;
+    background: #be11e0;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -4798,6 +4798,24 @@ body:has(.surreal-essay-marker) .post-body h2 {
   stroke: var(--surreal-white);
   stroke-width: 0.45;
   opacity: 0.5;
+}
+/* ---------- 全局环流背景层 ---------- */
+.surreal-gyre-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.34;
+}
+.surreal-gyre-bg svg {
+  width: 100%;
+  height: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .surreal-gyre-bg {
+    display: none;
+  }
 }
 @keyframes grainShift {
   0% {
