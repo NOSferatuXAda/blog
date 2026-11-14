@@ -13,9 +13,26 @@ comments: false
 <stop offset="55%" stop-color="#ff1d1d" stop-opacity="0.06"/>
 <stop offset="100%" stop-color="#ff1d1d" stop-opacity="0"/>
 </radialGradient>
+
+<g id="gyreKrill">
+<ellipse cx="0" cy="0" rx="8" ry="2.5" class="gyre-krill-body"/>
+<path d="M -7 -1 C -12 -5 -16 -4 -19 -2" class="gyre-krill-antenna"/>
+<path d="M 8 0 L 14 -4 L 14 4 Z" class="gyre-krill-tail"/>
+</g>
+
+<line id="gyreSpeedline" x1="425" y1="228" x2="425" y2="252" class="gyre-speedline"/>
 </defs>
 
+<text x="240" y="40" text-anchor="middle" class="gyre-bleed">Ⅰ</text>
+<text x="450" y="248" text-anchor="middle" class="gyre-bleed">Ⅱ</text>
+<text x="240" y="462" text-anchor="middle" class="gyre-bleed">Ⅲ</text>
+<text x="30" y="248" text-anchor="middle" class="gyre-bleed">Ⅳ</text>
+
 <circle cx="240" cy="240" r="205" fill="url(#gyreGlow)" class="gyre-glow"/>
+
+<circle cx="240" cy="240" r="163" class="gyre-arc gyre-arc--1"/>
+<circle cx="240" cy="240" r="138" class="gyre-arc gyre-arc--2"/>
+<circle cx="240" cy="240" r="112" class="gyre-arc gyre-arc--3"/>
 
 <circle cx="240" cy="240" r="176" class="gyre-ring-warm"/>
 <g>
@@ -37,6 +54,34 @@ comments: false
 </g>
 
 <circle cx="240" cy="240" r="96" class="gyre-ring-cold"/>
+
+<use href="#gyreSpeedline" transform="rotate(0 240 240)"/>
+<use href="#gyreSpeedline" transform="rotate(45 240 240)"/>
+<use href="#gyreSpeedline" transform="rotate(90 240 240)"/>
+<use href="#gyreSpeedline" transform="rotate(135 240 240)"/>
+<use href="#gyreSpeedline" transform="rotate(180 240 240)"/>
+<use href="#gyreSpeedline" transform="rotate(225 240 240)"/>
+<use href="#gyreSpeedline" transform="rotate(270 240 240)"/>
+<use href="#gyreSpeedline" transform="rotate(315 240 240)"/>
+
+<g class="gyre-krill">
+<animateTransform attributeName="transform" type="rotate" from="0 240 240" to="360 240 240" dur="30s" repeatCount="indefinite"/>
+<g transform="translate(390 240) rotate(90)">
+<use href="#gyreKrill"/>
+</g>
+</g>
+<g class="gyre-krill">
+<animateTransform attributeName="transform" type="rotate" from="360 240 240" to="0 240 240" dur="48s" repeatCount="indefinite"/>
+<g transform="translate(114 240) rotate(-90)">
+<use href="#gyreKrill"/>
+</g>
+</g>
+<g class="gyre-krill">
+<animateTransform attributeName="transform" type="rotate" from="0 240 240" to="360 240 240" dur="62s" repeatCount="indefinite"/>
+<g transform="translate(240 70) rotate(180)">
+<use href="#gyreKrill"/>
+</g>
+</g>
 
 <g>
 <animateTransform attributeName="transform" type="rotate" from="0 240 240" to="360 240 240" dur="24s" repeatCount="indefinite"/>
