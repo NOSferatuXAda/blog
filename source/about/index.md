@@ -4,7 +4,6 @@ description: nosferatu 的个人工作台：记录科研日常，也写一些不
 comments: false
 ---
 
-<div class="surreal-current" aria-hidden="true"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice"><circle cx="240" cy="240" r="150" class="gyre-arc gyre-arc--1"/><g transform="translate(340 180) rotate(35)"><path d="M -8 0 Q -3 -3 4 -2.5 L 9 0 L 4 2.5 Q -3 3 -8 0 Z" class="gyre-krill-body"/><path d="M -3 -2.6 L -3 2.6 M 0 -2.9 L 0 2.9 M 3 -2.7 L 3 2.7 M 6 -2 L 6 2" class="gyre-krill-segment"/><circle cx="-7" cy="-1" r="1.3" class="gyre-krill-eye"/><path d="M -8 -1 Q -14 -5 -19 -3" class="gyre-krill-antenna"/><path d="M -8 0 Q -12 -2 -16 -0.5" class="gyre-krill-antenna"/><path d="M 9 0 L 14 -3.5 L 13.5 0 L 14 3.5 Z" class="gyre-krill-tail"/><path d="M -1 2.9 L -2 4.4 M 2 2.8 L 1.5 4.4 M 5 2.1 L 5 3.8" class="gyre-krill-leg"/></g></svg></div>
 
 <div class="surreal-about">
   <p>nosferatu。记录科研日常，也写一些不一定有用的话。</p>
