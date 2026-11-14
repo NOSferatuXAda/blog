@@ -2622,21 +2622,29 @@ body:has(.surreal-essay-marker) .post-body h2 {
   opacity: 0.5;
 }
 
-/* ---------- 全局环流背景层 ---------- */
-.surreal-gyre-bg {
+/* ---------- 每页专属洋流（页级装饰层） ---------- */
+.surreal-current {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
-  opacity: 0.34;
+  opacity: 0.26;
 }
 
-.surreal-gyre-bg svg {
+.surreal-current svg {
   width: 100%;
   height: 100%;
 }
 
+.gyre-current-line {
+  fill: none;
+  stroke: var(--surreal-line-light);
+  stroke-width: 1px;
+  stroke-dasharray: 5 9;
+  opacity: 0.55;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .surreal-gyre-bg { display: none; }
+  .surreal-current { display: none; }
 }
