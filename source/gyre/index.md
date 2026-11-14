@@ -137,8 +137,12 @@ comments: false
 <text x="82" y="194" text-anchor="end" dominant-baseline="middle" class="gyre-node-label">关于</text>
 </a>
 
-<text x="240" y="232" text-anchor="middle" dominant-baseline="middle" class="gyre-center" transform="rotate(-4 240 232)">环流</text>
-<text x="240" y="264" text-anchor="middle" dominant-baseline="middle" class="gyre-center-sub" transform="rotate(2 240 264)">H2O · 温盐环流</text>
+<g class="gyre-center-glitch">
+<text x="240" y="232" text-anchor="middle" dominant-baseline="middle" class="gyre-center gyre-center-ghost" transform="translate(6 3)">环流</text>
+<text x="224" y="224" text-anchor="middle" dominant-baseline="middle" class="gyre-center" transform="rotate(-11 224 224)">环</text>
+<text x="264" y="246" text-anchor="middle" dominant-baseline="middle" class="gyre-center" transform="rotate(9 264 246)">流</text>
+<text x="240" y="272" text-anchor="middle" dominant-baseline="middle" class="gyre-center-sub" transform="rotate(4 240 272)">H2O · 温盐环流</text>
+</g>
 </svg>
 
 <p class="surreal-gyre__intro">水在转。我也在转。</p>
