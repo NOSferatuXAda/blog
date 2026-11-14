@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #86e300;
+    background: #0d5efb;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -4700,6 +4700,25 @@ body:has(.surreal-essay-marker) .post-body h2 {
   .surreal-gyre animateTransform {
     display: none;
   }
+}
+/* ---------- 环流页：解构主义（断裂环 + 幽灵位移副本） ---------- */
+.gyre-ring-warm {
+  stroke-dasharray: 126 46 74 58 92 44;
+  stroke-dashoffset: 8;
+}
+.gyre-ring-cold {
+  stroke-dasharray: 64 38 52 62;
+  stroke-dashoffset: 14;
+}
+.gyre-ring-ghost {
+  fill: none;
+  stroke: var(--surreal-red);
+  stroke-width: 1px;
+  opacity: 0.2;
+  stroke-dasharray: 26 96 44 72;
+}
+.surreal-gyre__text {
+  margin-bottom: 10px;
 }
 @keyframes grainShift {
   0% {
