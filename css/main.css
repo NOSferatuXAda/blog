@@ -1218,7 +1218,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ff7eff;
+    background: #860daa;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -4848,6 +4848,11 @@ body:has(.surreal-essay-marker) .post-body h2 {
 /* ---------- 副标题：平衡换行 ---------- */
 .site-subtitle {
   text-wrap: balance;
+}
+/* ---------- 副标题：强制一行不换行 ---------- */
+.site-subtitle {
+  letter-spacing: 0.12em;
+  white-space: nowrap;
 }
 @keyframes grainShift {
   0% {
