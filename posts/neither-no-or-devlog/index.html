@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#ff1d1d"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#ff1d1d">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="/blog/lib/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/blog/lib/animate.css/animate.min.css">
+  <link rel="stylesheet" href="/blog/lib/@fancyapps/ui/dist/fancybox/fancybox.css">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nosferatuxada.github.io","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":false,"version":"8.29.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-dark","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":260,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInUp","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/blog/js/config.js" defer></script>
+
+    <meta name="description" content="一个 Godot 3D 项目从环境搭建、双机并行到 demo 交付与美术重置的完整工作日志。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="neither no or：Godot 3D 项目开发工作日志">
+<meta property="og:url" content="https://nosferatuxada.github.io/blog/posts/neither-no-or-devlog/">
+<meta property="og:site_name" content="Creationism">
+<meta property="og:description" content="一个 Godot 3D 项目从环境搭建、双机并行到 demo 交付与美术重置的完整工作日志。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-22T03:50:00.000Z">
+<meta property="article:modified_time" content="2026-11-22T03:49:28.846Z">
+<meta property="article:author" content="nosferatu">
+<meta property="article:tag" content="Godot">
+<meta property="article:tag" content="双机协作">
+<meta property="article:tag" content="树莓派">
+<meta property="article:tag" content="版本管理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://nosferatuxada.github.io/blog/posts/neither-no-or-devlog/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":"","permalink":"https://nosferatuxada.github.io/blog/posts/neither-no-or-devlog/","path":"posts/neither-no-or-devlog/","title":"neither no or：Godot 3D 项目开发工作日志"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>neither no or：Godot 3D 项目开发工作日志 | Creationism</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="/blog/lib/@fancyapps/ui/dist/fancybox/fancybox.umd.js" defer></script>
+<script src="/blog/js/utils.js" defer></script><script src="/blog/js/motion.js" defer></script><script src="/blog/js/sidebar.js" defer></script><script src="/blog/js/next-boot.js" defer></script>
+
+  
+
+
+
+  <script src="/blog/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+
+
+<link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin="anonymous">
+<link rel="preload" href="/blog/fonts/syne-latin-700.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/blog/fonts/syne-latin-800.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/blog/fonts/jetbrains-mono-latin-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="/blog/fonts/jetbrains-mono-latin-600.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<meta name="color-scheme" content="dark">
+<style id="surreal-heading-spacing-fix">
+  /* 标题红线与描述/元信息之间的保底间距，避免旧缓存样式造成压字 */
+  .posts-expand .post-header {
+    padding-bottom: 24px !important;
+  }
+
+  .posts-expand .post-header .post-meta-container {
+    margin-top: 20px !important;
+  }
+</style>
+<noscript>
+  <style>
+    .use-motion .column,
+    .use-motion .site-title,
+    .use-motion .site-subtitle,
+    .use-motion .menu-item,
+    .use-motion .post-block,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .footer {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  </style>
+</noscript>
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/blog/atom.xml" title="Creationism" type="application/atom+xml">
+<link rel="alternate" href="/blog/rss2.xml" title="Creationism" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Creationism</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个泡在 H2O 里的写作者</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-首页"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-分类"><a href="/blog/categories/" rel="section"><i class="fa fa-layer-group fa-fw"></i>分类</a></li><li class="menu-item menu-item-关于"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-致谢"><a href="/blog/thanks/" rel="section"><i class="fa fa-heart fa-fw"></i>致谢</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="nosferatu"
+      src="/blog/images/avatar-surreal.gif">
+  <p class="site-author-name" itemprop="name">nosferatu</p>
+  <div class="site-description" itemprop="description">nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="/blog/unknown/" title="unknown → &#x2F;unknown&#x2F;" rel="noopener me"><i class="fa fa-question fa-fw"></i>unknown</a>
+      </span>
+  </div>
+<div class="surreal-author-card">
+  <div class="surreal-author-avatar-wrap">
+    <img class="surreal-author-avatar" src="/blog/images/avatar-surreal.gif" alt="nosferatu">
+    <span class="surreal-author-corner" aria-hidden="true"></span>
+  </div>
+  <div class="surreal-author-body">
+    <p class="surreal-author-kicker">WRITER / 写作者</p>
+    <h3 class="surreal-author-name">nosferatu</h3>
+    <p class="surreal-author-bio">Thysanoessa spinifera</p>
+    <ul class="surreal-author-social">
+      <li><a href="/blog/atom.xml" rel="noopener">RSS</a></li>
+      <li><a target="_blank" href="https://github.com/NOSferatuXAda" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nosferatuxada.github.io/blog/posts/neither-no-or-devlog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar-surreal.gif">
+      <meta itemprop="name" content="nosferatu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Creationism">
+      <meta itemprop="description" content="nosferatu 的个人工作台：记录科研日常，也写一些不一定有用的话。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="neither no or：Godot 3D 项目开发工作日志 | Creationism">
+      <meta itemprop="description" content="一个 Godot 3D 项目从环境搭建、双机并行到 demo 交付与美术重置的完整工作日志。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          neither no or：Godot 3D 项目开发工作日志
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-11-22 11:50:00 / 修改时间：11:49:28" itemprop="dateCreated datePublished" datetime="2026-11-22T11:50:00+08:00">2026-11-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">一个 Godot 3D 项目从环境搭建、双机并行到 demo 交付与美术重置的完整工作日志。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div class="surreal-essay-marker" hidden></div>
+
+<blockquote>
+<p>时间范围：2026-11-17 ～ 2026-11-22<br>设备：树莓派（代码主副本）+ Windows 笔记本（文档主副本 &#x2F; 代码镜像）<br>目标：用 Godot 从零做一个 3D 项目，并在双机之间安全地并行推进代码与文档</p>
+</blockquote>
+<p>这不是教程，是一份按时间整理的工作日志。保留关键决策和结论，省略重复的等待与调试。</p>
+<h2 id="阶段-1｜环境与文档启动（11-17）"><a href="#阶段-1｜环境与文档启动（11-17）" class="headerlink" title="阶段 1｜环境与文档启动（11-17）"></a>阶段 1｜环境与文档启动（11-17）</h2><p><strong>做了什么</strong></p>
+<ol>
+<li>树莓派装 Godot 4.7.2：apt 源只有 Godot 3，改从 GitHub releases 拿 arm64 官方包，软链到 ~&#x2F;.local&#x2F;bin&#x2F;godot。</li>
+<li>建 GDD 设计文档 v0.1，把需求落到纸面。</li>
+</ol>
+<h2 id="阶段-2｜双线并行（11-18）"><a href="#阶段-2｜双线并行（11-18）" class="headerlink" title="阶段 2｜双线并行（11-18）"></a>阶段 2｜双线并行（11-18）</h2><p><strong>分工确立</strong></p>
+<ul>
+<li>树莓派：代码主副本</li>
+<li>Windows：文档主副本 + 代码镜像</li>
+<li>约定：代码只在树莓派改，Windows 只改文档</li>
+</ul>
+<p><strong>做了什么</strong></p>
+<ol>
+<li>本会话（树莓派）：手感打磨——移动加减速、后坐与摆动、镜头踢动、按住连发、hitstop、命中标记、准星修复。</li>
+<li>并行流（Windows）：GDD 从 v0.2 推到 v0.4，完成第一轮 27 题问答。</li>
+</ol>
+<h2 id="阶段-3｜代码冲刺-v2-→-v11（11-19）"><a href="#阶段-3｜代码冲刺-v2-→-v11（11-19）" class="headerlink" title="阶段 3｜代码冲刺 v2 → v11（11-19）"></a>阶段 3｜代码冲刺 v2 → v11（11-19）</h2><p>单日改动最密的一天，代码版本从 v2 一路到 v11。</p>
+<ol>
+<li>v2-v6：手感反馈、靶子随机刷新、资源骨架、像素渲染管线重构（SubViewport 640×360 渲染 + 1080p UI 叠加）。</li>
+<li>氛围地基：print&#x2F;glitch shader + 电波音。</li>
+<li>Windows 镜像同步：v7 单文件重构、v8 灰盒关卡、v9 室内曝光、v10 门与碰撞、v11 光烘焙。</li>
+<li>冲突记录（19:52）：并行流用 Windows 侧恢复覆盖了本会话 19:48 追加的改动，导致解析失败，后由本会话重做。</li>
+</ol>
+<h2 id="阶段-4｜demo-同步与优化（11-21）"><a href="#阶段-4｜demo-同步与优化（11-21）" class="headerlink" title="阶段 4｜demo 同步与优化（11-21）"></a>阶段 4｜demo 同步与优化（11-21）</h2><ol>
+<li>收到外部 demo 包，独立解包审查 → 优化 → 测试后合入。</li>
+<li>优化项：END 冻结、精英冲撞、限幅器复用、BFS 缓存、审片图隔离、integer 缩放。</li>
+<li>自检：79&#x2F;79 冒烟 + 五项专项探针全绿，main.gd SHA256 校验，合入前 tar 备份。</li>
+</ol>
+<h2 id="阶段-5｜设定与美术重置（11-19-晚-～-11-22）"><a href="#阶段-5｜设定与美术重置（11-19-晚-～-11-22）" class="headerlink" title="阶段 5｜设定与美术重置（11-19 晚 ～ 11-22）"></a>阶段 5｜设定与美术重置（11-19 晚 ～ 11-22）</h2><ol>
+<li>用户要求重定设定、重做美术，旧文档的「已定」不再自动有效。</li>
+<li>建独立工作稿目录：18 份文档 + 概念板 + 风格帧 + 模型 v03→v13 + 验证脚本。</li>
+<li>自检里程碑：完整 144&#x2F;144、战斗 41&#x2F;41、配色 132&#x2F;132。</li>
+</ol>
+<h2 id="经验与坑"><a href="#经验与坑" class="headerlink" title="经验与坑"></a>经验与坑</h2><ol>
+<li>双线并行的覆盖冲突：两处改同一文件，一方的整文件恢复会冲掉另一方改动。改前先划清职责边界，冲突后要有重做预案。</li>
+<li>单文件重构趁早：代码从 v1 单文件一路涨到 v11，越往后拆越贵。</li>
+<li>自检自动化：冒烟 + 专项探针 + SHA256 校验，交付前先自证，而不是等报错。</li>
+<li>大合入前备份：每次同步外部代码前先 tar，出了问题能回退。</li>
+</ol>
+<p class="surreal-post-back"><a href="../../archives/">← 返回作品集</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Godot/" rel="tag"># Godot</a>
+              <a href="/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag"># 树莓派</a>
+              <a href="/blog/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag"># 版本管理</a>
+              <a href="/blog/tags/%E5%8F%8C%E6%9C%BA%E5%8D%8F%E4%BD%9C/" rel="tag"># 双机协作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/posts/again-and-again/" rel="prev" title="一遍又一遍">
+                  <i class="fa fa-angle-left"></i> 一遍又一遍
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-circle"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">nosferatu</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+<script src="/blog/js/waves-bg.js" defer></script>
+
+<div class="surreal-announcement" id="surreal-announcement" role="dialog" aria-modal="true" aria-labelledby="surreal-announcement-title" hidden>
+  <div class="surreal-announcement__backdrop" data-close="overlay"></div>
+  <div class="surreal-announcement__frame">
+    <div class="surreal-announcement__panel">
+      <button type="button" class="surreal-announcement__close" data-close="button" aria-label="关闭公告">×</button>
+      <p class="surreal-announcement__kicker">最新公告</p>
+      <h2 class="surreal-announcement__title" id="surreal-announcement-title"></h2>
+      <p class="surreal-announcement__date"></p>
+      <div class="surreal-announcement__body"></div>
+      <div class="surreal-announcement__actions">
+        <button type="button" class="surreal-announcement__dismiss" data-dismiss>不再提醒</button>
+        <a class="surreal-announcement__more" href="/blog/logs/">查看全部公告 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.__SURREAL_ANNOUNCEMENT__ = {
+    jsonUrl: "/blog/logs.json",
+    pageUrl: "/blog/logs/"
+  };
+</script>
+<script src="/blog/js/announcement-popup.js" defer></script>
+
+
+<script src="/blog/js/portfolio-filter.js" defer></script>
+<script src="/blog/js/article-toc.js" defer></script>
+
+
+</body>
+</html>
