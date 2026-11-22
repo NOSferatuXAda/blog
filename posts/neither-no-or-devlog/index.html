@@ -28,7 +28,7 @@
 <meta property="og:description" content="一个 Godot 3D 项目从环境搭建、双机并行到 demo 交付与美术重置的完整工作日志。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-11-22T03:50:00.000Z">
-<meta property="article:modified_time" content="2026-11-22T03:49:28.846Z">
+<meta property="article:modified_time" content="2026-11-22T03:52:58.562Z">
 <meta property="article:author" content="nosferatu">
 <meta property="article:tag" content="Godot">
 <meta property="article:tag" content="双机协作">
@@ -245,7 +245,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-11-22 11:50:00 / 修改时间：11:49:28" itemprop="dateCreated datePublished" datetime="2026-11-22T11:50:00+08:00">2026-11-22</time>
+      <time title="创建时间：2026-11-22 11:50:00 / 修改时间：11:52:58" itemprop="dateCreated datePublished" datetime="2026-11-22T11:50:00+08:00">2026-11-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,7 +275,7 @@
 <p>这不是教程，是一份按时间整理的工作日志。保留关键决策和结论，省略重复的等待与调试。</p>
 <h2 id="阶段-1｜环境与文档启动（11-17）"><a href="#阶段-1｜环境与文档启动（11-17）" class="headerlink" title="阶段 1｜环境与文档启动（11-17）"></a>阶段 1｜环境与文档启动（11-17）</h2><p><strong>做了什么</strong></p>
 <ol>
-<li>树莓派装 Godot 4.7.2：apt 源只有 Godot 3，改从 GitHub releases 拿 arm64 官方包，软链到 ~&#x2F;.local&#x2F;bin&#x2F;godot。</li>
+<li>在树莓派上装 Godot 4.7.2：apt 源只有 Godot 3，改从 GitHub releases 拿 arm64 官方包，软链到 ~&#x2F;.local&#x2F;bin&#x2F;godot。</li>
 <li>建 GDD 设计文档 v0.1，把需求落到纸面。</li>
 </ol>
 <h2 id="阶段-2｜双线并行（11-18）"><a href="#阶段-2｜双线并行（11-18）" class="headerlink" title="阶段 2｜双线并行（11-18）"></a>阶段 2｜双线并行（11-18）</h2><p><strong>分工确立</strong></p>
@@ -286,15 +286,15 @@
 </ul>
 <p><strong>做了什么</strong></p>
 <ol>
-<li>本会话（树莓派）：手感打磨——移动加减速、后坐与摆动、镜头踢动、按住连发、hitstop、命中标记、准星修复。</li>
-<li>并行流（Windows）：GDD 从 v0.2 推到 v0.4，完成第一轮 27 题问答。</li>
+<li>我在树莓派这边做手感打磨——移动加减速、后坐与摆动、镜头踢动、按住连发、hitstop、命中标记、准星修复。</li>
+<li>Windows 那边把 GDD 从 v0.2 推到 v0.4，完成第一轮 27 题问答。</li>
 </ol>
 <h2 id="阶段-3｜代码冲刺-v2-→-v11（11-19）"><a href="#阶段-3｜代码冲刺-v2-→-v11（11-19）" class="headerlink" title="阶段 3｜代码冲刺 v2 → v11（11-19）"></a>阶段 3｜代码冲刺 v2 → v11（11-19）</h2><p>单日改动最密的一天，代码版本从 v2 一路到 v11。</p>
 <ol>
 <li>v2-v6：手感反馈、靶子随机刷新、资源骨架、像素渲染管线重构（SubViewport 640×360 渲染 + 1080p UI 叠加）。</li>
 <li>氛围地基：print&#x2F;glitch shader + 电波音。</li>
 <li>Windows 镜像同步：v7 单文件重构、v8 灰盒关卡、v9 室内曝光、v10 门与碰撞、v11 光烘焙。</li>
-<li>冲突记录（19:52）：并行流用 Windows 侧恢复覆盖了本会话 19:48 追加的改动，导致解析失败，后由本会话重做。</li>
+<li>冲突记录（19:52）：Windows 那边用整文件恢复覆盖了我这边 19:48 追加的改动，导致解析失败，之后我这边重做了一遍。</li>
 </ol>
 <h2 id="阶段-4｜demo-同步与优化（11-21）"><a href="#阶段-4｜demo-同步与优化（11-21）" class="headerlink" title="阶段 4｜demo 同步与优化（11-21）"></a>阶段 4｜demo 同步与优化（11-21）</h2><ol>
 <li>收到外部 demo 包，独立解包审查 → 优化 → 测试后合入。</li>
